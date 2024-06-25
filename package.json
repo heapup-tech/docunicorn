@@ -1,6 +1,5 @@
 {
   "name": "heapup-docs-template",
-  "private": true,
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -8,18 +7,21 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prettier": "prettier --write src"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
-    "@astrojs/starlight": "^0.24.2",
-    "astro": "^4.10.2",
-    "sharp": "^0.32.5",
-    "typescript": "^5.4.5"
+    "@astrojs/mdx": "^3.1.2",
+    "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.11.1",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.2"
   },
   "devDependencies": {
-    "prettier-plugin-astro": "^0.14.0",
-    "prettier-plugin-organize-imports": "^3.2.4",
-    "prettier-plugin-tailwindcss": "^0.6.5"
+    "prettier": "^3.3.2",
+    "prettier-plugin-astro": "^0.14.0"
   }
 }

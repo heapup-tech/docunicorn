@@ -1,10 +1,6 @@
 /** @type {import("prettier").Config} */
 export default {
-  plugins: [
-    'prettier-plugin-astro',
-    'prettier-plugin-organize-imports',
-    'prettier-plugin-tailwindcss'
-  ],
+  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
   semi: false,
   endOfLine: 'auto',
   singleQuote: true,

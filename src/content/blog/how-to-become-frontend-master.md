@@ -13,7 +13,7 @@ author: 'Connor Lopez'
 tags: [astro, tailwindcss, frontend]
 ---
 
-```tsx
+```solidity
 const c = 100
 ```
 

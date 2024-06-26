@@ -13,6 +13,10 @@ author: 'Connor Lopez'
 tags: [astro, tailwindcss, frontend]
 ---
 
+```tsx
+const c = 100
+```
+
 Whatever you do, it's always beneficial to have the right tools at your disposal. I love working remotely and am a big advocate of doing remote software development. Therefore, I always strive to have the best equipment available to be as productive as possible. Writing posts like this constantly takes a lot of time. Luckily iVanky helped me out and sponsored this post so that I can concentrate on writing. I recently had the chance to test out one of their hottest products, a dual USB-C Docking Station that allows me to connect both my wide-screen monitors to my MacBook with Dual 4K@60Hz display connectivity. It also supports up to 96W laptop charging, which is awesome. If you are in a situation like me and want to upgrade your equipment, check out this and their other products! And now comes the article:
 
 Whether you are new to programming or already an experienced developer. In this industry, learning new concepts and languages/frameworks is

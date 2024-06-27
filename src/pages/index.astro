@@ -1,43 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import Layout from '@layouts/Layout.astro'
+import Hero from '@components/hero.astro'
 import { getCollection } from 'astro:content'
 
 const publishedBlogEntries = await getCollection('blog', ({ data }) => {
   return !data.draft && data.publishDate < new Date()
 })
-
-console.log(publishedBlogEntries)
 ---
 
-<Layout title='Welcome to Astro.'>
-  {
-    publishedBlogEntries.map((blogPostEntry, index) => (
-      <li>
-        <a href={`/blog/${blogPostEntry.slug}`}>
-          <div class='grid items-center gap-5 md:grid-cols-2 md:gap-10'>
-            <div>
-              <span class='text-sm font-medium uppercase tracking-wider text-blue-400'>
-                {blogPostEntry.data.category}
-              </span>
-
-              <h2 class='mt-1 text-3xl font-semibold leading-snug tracking-tight'>
-                {blogPostEntry.data.title}
-              </h2>
-
-              <div class='mt-3 flex gap-2'>
-                <span class='text-gray-400'>{blogPostEntry.data.author}</span>
-                <span class='text-gray-400'>• </span>
-                <time
-                  class='text-gray-400'
-                  datetime={blogPostEntry.data.publishDate.toISOString()}
-                >
-                  {blogPostEntry.data.publishDate.toDateString()}
-                </time>
-              </div>
-            </div>
-          </div>
-        </a>
-      </li>
-    ))
-  }
+<Layout title='AstroDiem | Beautiful Static Site Template'>
+  <Hero />
 </Layout>

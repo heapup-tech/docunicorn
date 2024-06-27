@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
+      "@config": ["site.config.ts"],
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
       "@pages/*": ["pages/*"]

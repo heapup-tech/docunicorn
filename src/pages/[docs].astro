@@ -1,0 +1,18 @@
+---
+import site from '@config'
+import DocLayout from '@layouts/doc-layout.astro'
+export async function getStaticPaths() {
+  return site.navbar
+    .filter((item) => item.type === 'doc')
+    .map((entry) => ({
+      params: { docs: entry.href },
+      props: entry
+    }))
+}
+
+const { dir } = Astro.props
+---
+
+<DocLayout dir={dir}>
+  <div>Hello</div>
+</DocLayout>

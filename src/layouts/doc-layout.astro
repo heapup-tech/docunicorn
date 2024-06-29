@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@layouts/base-layout.astro'
+import Sidebar from '@components/sidebar.astro'
+import Toc from '@components/toc.astro'
+import site from '@config'
+import { getCollection } from 'astro:content'
+
+interface Props {
+  dir: string
+}
+const { dir } = Astro.props
+
+const params = Astro.params
+
+const docs = await getCollection(dir)
+
+console.log(docs)
+---
+
+<BaseLayout>
+  <div class='grid grid-cols-3'>
+    <Sidebar />
+    <main>
+      <slot />
+    </main>
+    <Toc />
+  </div>
+</BaseLayout>

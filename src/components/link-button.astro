@@ -1,34 +1,40 @@
 ---
-import Button from '@components/button.astro'
 import ArrwoRight from '@assets/images/arrow-right.astro'
-interface Props {
-  href: string
-  variant?:
-    | 'default'
-    | 'destructive'
-    | 'outline'
-    | 'secondary'
-    | 'ghost'
-    | 'link'
-  size?: 'default' | 'sm' | 'lg' | 'icon'
-  class?: string
-  [x: string]: any
+
+const sizes = {
+  sm: 'h-8 rounded-md px-3 text-xs',
+  md: 'h-9 px-4 py-2',
+  lg: 'h-10 rounded-md px-8'
 }
 
-const { href, ...rest } = Astro.props
+interface Props {
+  size?: keyof typeof sizes
+  href?: string
+  class?: string
+}
+
+const { size = 'md', href, class: className } = Astro.props
 ---
 
-<Button
-  {...rest}
-  class:list={['group']}
-  size='default'
+<button
+  class:list={[
+    'focus-visible:outline-non focus-visible:ring-ring group inline-flex items-center justify-center whitespace-nowrap rounded-md transition-colors focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50',
+    sizes[size],
+    className
+  ]}
 >
-  <a
-    href={href}
-    target='_blank'
-    class='flex items-center gap-x-1'
-  >
-    <slot />
-    <ArrwoRight />
-  </a>
-</Button>
+  {
+    href ? (
+      <a
+        href={href}
+        target='_blank'
+        class='flex items-center gap-x-1.5'
+      >
+        <slot />
+        <ArrwoRight />
+      </a>
+    ) : (
+      <slot />
+    )
+  }
+</button>

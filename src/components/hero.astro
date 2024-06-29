@@ -1,7 +1,4 @@
 ---
-import { Image } from 'astro:assets'
-import DepthImage from '@images/dddepth-319.jpg'
-import Logo from '@images/logo.png'
 import LinkButton from '@components/link-button.astro'
 ---
 
@@ -10,16 +7,17 @@ import LinkButton from '@components/link-button.astro'
 >
   <div class='relative z-10'>
     <h1 class='text-4xl font-semibold text-black'>
-      Free document template, powered by astro
+      Free document template, Powered by astro
     </h1>
     <p class='mt-2 text-xl text-stone-400'>
-      Build faster websites with less client-side Javascript
+      Build faster websites with markdown in minutes.
     </p>
 
     <div class='mt-4'>
       <LinkButton
-        variant='default'
         href='https://github.com/heapup-tech/heapup-docs-template'
+        class='bg-stone-800 text-white hover:bg-stone-800/90'
+        size='lg'
       >
         Get Template
       </LinkButton>

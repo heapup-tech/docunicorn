@@ -1,24 +1,34 @@
 ---
 import BaseLayout from '@layouts/base-layout.astro'
 import Hero from '@components/hero.astro'
+import AstroIcon from '@assets/images/astro.svg'
+import DesignIcon from '@assets/images/design.svg'
+import MarkdownIcon from '@assets/images/markdown.svg'
+import CustomIcon from '@assets/images/custom.svg'
+
+import { Image } from 'astro:assets'
 
 const features = [
   {
-    icon: '🚀',
-    title: '12313',
-    description: '12321313'
+    icon: AstroIcon,
+    title: 'Powered by Astro',
+    description: 'Use astro to bring faster access speed to your website.'
   },
   {
-    title: '12313',
-    description: '12321313'
+    icon: DesignIcon,
+    title: 'Modern design',
+    description:
+      'The exquisite modern style design provides visitors with an attractive experience.'
   },
   {
-    title: '12313',
-    description: '12321313'
+    icon: MarkdownIcon,
+    title: 'Markdwon',
+    description: 'Support using markdown or mdx to write your website content.'
   },
   {
-    title: '12313',
-    description: '12321313'
+    icon: CustomIcon,
+    title: 'Customization',
+    description: 'Custom components to override built-in components.'
   }
 ]
 ---
@@ -26,14 +36,18 @@ const features = [
 <BaseLayout>
   <Hero />
   <div
-    class='container m-auto grid grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-4'
+    class='container m-auto mb-20 grid grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-4'
   >
     {
       features.map((feature) => (
-        <div class='rounded-md bg-gray-100 p-2'>
-          <div>{feature.icon}</div>
-          <h2 class='text-lg font-semibold'>{feature.title}</h2>
-          <p class='mt-2 text-gray-500'>{feature.description}</p>
+        <div class='rounded-md bg-gray-100 p-4'>
+          <Image
+            class='flex h-12 w-12 items-center justify-center rounded-md bg-slate-300 p-2'
+            src={feature.icon}
+            alt=''
+          />
+          <h2 class='mt-2 text-xl font-semibold'>{feature.title}</h2>
+          <p class='mt-1 text-gray-500'>{feature.description}</p>
         </div>
       ))
     }

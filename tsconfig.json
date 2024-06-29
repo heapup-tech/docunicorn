@@ -6,7 +6,8 @@
       "@config": ["site.config.ts"],
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@assets/*": ["assets/*"]
     }
   }
 }

@@ -1,8 +1,10 @@
 ---
 import AppHeader from '@components/app-header.astro'
 import AppFooter from '@components/app-footer.astro'
+import config from '@config'
+
 interface Props {
-  title: string
+  title?: string
 }
 
 const { title } = Astro.props
@@ -29,13 +31,18 @@ const { title } = Astro.props
       name='generator'
       content={Astro.generator}
     />
-    <title>{title}</title>
+    <title>{title || config.site.name}</title>
   </head>
   <body>
-    <AppHeader />
-    <main>
-      <slot />
-    </main>
-    <AppFooter />
+    <div
+      class='flex min-h-screen flex-col'
+      id='layout'
+    >
+      <AppHeader />
+      <main class='shrink-0 grow'>
+        <slot />
+      </main>
+      <AppFooter />
+    </div>
   </body>
 </html>

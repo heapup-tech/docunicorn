@@ -1,5 +1,28 @@
-<div class='m-auto max-w-3xl py-4'>
-  <h1>Welcome to Astro</h1>
-  <p>Build faster websites with less client-side Javascript</p>
-  <button>Get Started</button>
+---
+import { Image } from 'astro:assets'
+import DepthImage from '@images/dddepth-319.jpg'
+import Logo from '@images/logo.png'
+import LinkButton from '@components/link-button.astro'
+---
+
+<div
+  class='relative m-auto mt-16 flex h-96 max-w-3xl items-center justify-center py-4 text-center'
+>
+  <div class='relative z-10'>
+    <h1 class='text-4xl font-semibold text-black'>
+      Free document template, powered by astro
+    </h1>
+    <p class='mt-2 text-xl text-stone-400'>
+      Build faster websites with less client-side Javascript
+    </p>
+
+    <div class='mt-4'>
+      <LinkButton
+        variant='default'
+        href='https://github.com/heapup-tech/heapup-docs-template'
+      >
+        Get Template
+      </LinkButton>
+    </div>
+  </div>
 </div>

@@ -1,13 +1,41 @@
 ---
-import Layout from '@layouts/Layout.astro'
+import BaseLayout from '@layouts/base-layout.astro'
 import Hero from '@components/hero.astro'
-import { getCollection } from 'astro:content'
 
-const publishedBlogEntries = await getCollection('blog', ({ data }) => {
-  return !data.draft && data.publishDate < new Date()
-})
+const features = [
+  {
+    icon: '🚀',
+    title: '12313',
+    description: '12321313'
+  },
+  {
+    title: '12313',
+    description: '12321313'
+  },
+  {
+    title: '12313',
+    description: '12321313'
+  },
+  {
+    title: '12313',
+    description: '12321313'
+  }
+]
 ---
 
-<Layout title='AstroDiem | Beautiful Static Site Template'>
+<BaseLayout>
   <Hero />
-</Layout>
+  <div
+    class='container m-auto grid grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-4'
+  >
+    {
+      features.map((feature) => (
+        <div class='rounded-md bg-gray-100 p-2'>
+          <div>{feature.icon}</div>
+          <h2 class='text-lg font-semibold'>{feature.title}</h2>
+          <p class='mt-2 text-gray-500'>{feature.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</BaseLayout>

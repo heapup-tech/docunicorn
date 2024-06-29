@@ -1,0 +1,34 @@
+---
+import Button from '@components/button.astro'
+import ArrwoRight from '@assets/images/arrow-right.astro'
+interface Props {
+  href: string
+  variant?:
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'link'
+  size?: 'default' | 'sm' | 'lg' | 'icon'
+  class?: string
+  [x: string]: any
+}
+
+const { href, ...rest } = Astro.props
+---
+
+<Button
+  {...rest}
+  class:list={['group']}
+  size='default'
+>
+  <a
+    href={href}
+    target='_blank'
+    class='flex items-center gap-x-1'
+  >
+    <slot />
+    <ArrwoRight />
+  </a>
+</Button>

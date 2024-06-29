@@ -1,39 +1,46 @@
 ---
-interface Props {
-  size?: 'md' | 'lg'
-  block?: boolean
-  style?: 'outline' | 'primary' | 'inverted'
+const sizes = {
+  default: 'h-9 px-4 py-2',
+  sm: 'h-8 rounded-md px-3 text-xs',
+  lg: 'h-10 rounded-md px-8',
+  icon: 'h-9 w-9'
+}
+
+const variants = {
+  default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+  destructive:
+    'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+  outline:
+    'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+  secondary:
+    'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+  ghost: 'hover:bg-accent hover:text-accent-foreground',
+  link: 'text-primary underline-offset-4 hover:underline'
+}
+
+export interface Props {
+  size?: keyof typeof sizes
+  variant?: keyof typeof variants
   class?: string
   [x: string]: any
 }
 
 const {
-  size = 'md',
-  style = 'primary',
-  block,
+  size = 'default',
+  variant = 'default',
   class: className,
   ...rest
-} = Astro.props
-
-const sizes = {
-  md: 'px-5 py-2.5',
-  lg: 'px-6 py-3'
-}
-
-const styles = {
-  outline: 'border-2 border-black hover:bg-black text-black hover:text-white',
-  primary: 'bg-black text-white hover:bg-slate-900  border-2 border-transparent'
-}
+}: Props = Astro.props
 ---
 
 <button
-  {...rest}
   class:list={[
-    'rounded text-center ring-gray-200 ring-offset-2 transition focus-visible:ring-2',
-    block && 'w-full',
+    'focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50',
     sizes[size],
+    variants[variant],
     className
   ]}
+  {...rest}
 >
   <slot />
 </button>

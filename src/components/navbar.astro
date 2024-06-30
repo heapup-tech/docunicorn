@@ -5,9 +5,7 @@ import site from '@config'
 <nav class='ml-6 flex items-center'>
   {
     site.navbar.map((item) => {
-      return (
-        <a href={`/${item.type === 'doc' ? item.href : ''}`}>{item.label}</a>
-      )
+      return <a href={`${item.href}`}>{item.label}</a>
     })
   }
 </nav>

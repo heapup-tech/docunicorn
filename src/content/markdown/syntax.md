@@ -1,3 +1,7 @@
+---
+title: Markdown Syntax
+---
+
 # Markdown Syntax
 
 ```ts

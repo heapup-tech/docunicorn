@@ -6,7 +6,10 @@ import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
   integrations: [tailwind(), mdx(), sitemap()],
+  prefetch: {
+    defaultStrategy: 'viewport'
+  },
   markdown: {
-    syntaxHighlight: 'prism'
+    syntaxHighlight: 'shiki'
   }
 })

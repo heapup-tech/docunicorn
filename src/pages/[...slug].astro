@@ -1,0 +1,26 @@
+---
+import site from '@config'
+import DocLayout from '@layouts/doc-layout.astro'
+import BaseLayout from '@layouts/base-layout.astro'
+import { getCollection } from 'astro:content'
+import type { CollectionKey } from 'astro:content'
+
+export async function getStaticPaths() {
+  const entries = await getCollection('markdown')
+
+  return entries.map((entry) => ({
+    params: { slug: `${entry.collection}/${entry.slug}` },
+    props: { entry }
+  }))
+}
+const { entry } = Astro.props
+console.log(entry)
+
+const { Content } = await entry.render()
+---
+
+<DocLayout>
+  <div class='prose prose-lg'>
+    <Content />
+  </div>
+</DocLayout>

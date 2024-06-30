@@ -30,21 +30,6 @@ const { Content } = await entry.render()
       <span class='text-gray-400'>
         {entry.data.author}
       </span>
-      <span class='text-gray-400'>•</span>
-      <time
-        class='text-gray-400'
-        datetime={entry.data.publishDate.toISOString()}
-      >
-        {entry.data.publishDate.toDateString()}
-      </time>
-      <span class='hidden text-gray-400 md:block'>•</span>
-      <div class='flex w-full flex-wrap gap-3 md:w-auto'>
-        {
-          entry.data.tags.map((tag) => (
-            <span class='text-sm text-gray-500'>#{tag}</span>
-          ))
-        }
-      </div>
     </div>
   </div>
 

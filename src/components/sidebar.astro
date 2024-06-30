@@ -1,5 +1,14 @@
 ---
-
+import type { CollectionEntry, AnyEntryMap } from 'astro:content'
+export interface SideItem {
+  label: string
+  entry: CollectionEntry<keyof AnyEntryMap>
+  href: string
+  items?: SideItem[]
+}
+interface Props {
+  sides?: SideItem[]
+}
 ---
 
-<aside>侧边栏</aside>
+<aside class='h-full bg-red-100'>侧边栏</aside>

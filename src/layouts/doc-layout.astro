@@ -1,20 +1,19 @@
 ---
 import BaseLayout from '@layouts/base-layout.astro'
+import type { SideItem } from '@components/sidebar.astro'
 import Sidebar from '@components/sidebar.astro'
 import Toc from '@components/toc.astro'
-import site from '@config'
-import { getCollection } from 'astro:content'
+import { getCollection, getEntryBySlug } from 'astro:content'
+import type { ContentCollectionKey } from 'astro:content'
 
 interface Props {
-  dir: string
+  dir?: ContentCollectionKey
 }
+
 const { dir } = Astro.props
 
 const params = Astro.params
-
-const docs = await getCollection(dir)
-
-console.log(docs)
+console.log(params)
 ---
 
 <BaseLayout>
@@ -25,4 +24,8 @@ console.log(docs)
     </main>
     <Toc />
   </div>
+  <!-- 
+  <div class='prose prose-lg mx-auto mt-6 max-w-3xl'>
+    <Content />
+  </div> -->
 </BaseLayout>

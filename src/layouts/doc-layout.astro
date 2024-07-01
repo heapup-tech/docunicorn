@@ -1,31 +1,82 @@
 ---
 import BaseLayout from '@layouts/base-layout.astro'
-import type { SideItem } from '@components/sidebar.astro'
+import type { SidebarItem } from '@components/sidebar.astro'
 import Sidebar from '@components/sidebar.astro'
 import Toc from '@components/toc.astro'
 import { getCollection, getEntryBySlug } from 'astro:content'
-import type { ContentCollectionKey } from 'astro:content'
+import type { ContentCollectionKey, CollectionEntry } from 'astro:content'
 
 interface Props {
-  dir?: ContentCollectionKey
+  collection: ContentCollectionKey
 }
 
-const { dir } = Astro.props
+const { collection } = Astro.props
 
-const params = Astro.params
-console.log(params)
+const entries = await getCollection(collection)
+
+let sidebars: SidebarItem[] = []
+
+const recursionBuildSidebar = (
+  entry: CollectionEntry<ContentCollectionKey>,
+  index: number
+): SidebarItem | null => {
+  const ids = entry.id.split('/')
+  if (index >= ids.length) return null
+
+  const id = ids[index]
+
+  const childs = recursionBuildSidebar(entry, index + 1)
+
+  let routes = collection + '/'
+  for (let i = 0; i <= index; i++) {
+    routes += `${ids[i]}${i === index ? '' : '/'}`
+  }
+  if (routes.endsWith('.md') || routes.endsWith('.mdx')) {
+    routes = routes.split('.').slice(0, -1).join('')
+  }
+  let sidebar: SidebarItem = {
+    label: id,
+    id: id,
+    slug: routes,
+    childs: []
+  }
+  if (childs) sidebar.childs = [childs]
+
+  return sidebar
+}
+
+const mergeSidebars = (sidebars: SidebarItem[], sidebar: SidebarItem) => {
+  const index = sidebars.findIndex((side) => side.id === sidebar.id)
+  if (index > -1) {
+    const currentSidebar = sidebars[index]
+    sidebar.childs.forEach((child) => {
+      mergeSidebars(currentSidebar.childs, child)
+    })
+  } else {
+    sidebars.push(sidebar)
+  }
+  sidebars.sort((a, b) => b.id.localeCompare(a.id))
+}
+
+const buildSidebar = (entry: CollectionEntry<ContentCollectionKey>) => {
+  const sidebar = recursionBuildSidebar(entry, 0)
+
+  if (sidebar) {
+    mergeSidebars(sidebars, sidebar)
+  }
+}
+
+entries.forEach((entry) => {
+  buildSidebar(entry)
+})
 ---
 
 <BaseLayout>
   <div class='grid grid-cols-3'>
-    <Sidebar />
+    <Sidebar sidebars={sidebars} />
     <main>
       <slot />
     </main>
     <Toc />
   </div>
-  <!-- 
-  <div class='prose prose-lg mx-auto mt-6 max-w-3xl'>
-    <Content />
-  </div> -->
 </BaseLayout>

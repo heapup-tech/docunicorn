@@ -3,7 +3,7 @@ import type { ContentCollectionKey } from 'astro:content'
 type NavbarItem = {
   label: string
   href: string
-  dir: ContentCollectionKey
+  collection: ContentCollectionKey
 }
 
 type Config = {
@@ -23,12 +23,12 @@ const config: Config = {
     {
       label: 'Markdown',
       href: '/markdown/syntax',
-      dir: 'markdown'
+      collection: 'markdown'
     },
     {
       label: 'Article',
       href: '/blog',
-      dir: 'blog'
+      collection: 'blog'
     }
   ]
 }

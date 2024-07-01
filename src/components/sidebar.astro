@@ -1,14 +1,36 @@
 ---
-import type { CollectionEntry, AnyEntryMap } from 'astro:content'
-export interface SideItem {
+export type SidebarItem = {
   label: string
-  entry: CollectionEntry<keyof AnyEntryMap>
-  href: string
-  items?: SideItem[]
+  id: string
+  slug: string
+  childs: SidebarItem[]
 }
+
 interface Props {
-  sides?: SideItem[]
+  sidebars: SidebarItem[]
+  hierarchy?: number
 }
+
+const { sidebars, hierarchy = 0 } = Astro.props
 ---
 
-<aside class='h-full bg-red-100'>侧边栏</aside>
+<aside class='h-full bg-red-100'>
+  {
+    sidebars.map((sidebar) => {
+      return (
+        <div id={`hierarchy-${hierarchy}`}>
+          <div class:list={[`text-xl font-semibold`]}>
+            {sidebar.label} {sidebar.childs.length > 0 && <button>+</button>}
+          </div>
+          {sidebar.childs.length === 0 && (
+            <a href={`/${sidebar.slug}`}>{sidebar.label}</a>
+          )}
+          <Astro.self
+            sidebars={sidebar.childs}
+            hierarchy={hierarchy + 1}
+          />
+        </div>
+      )
+    })
+  }
+</aside>

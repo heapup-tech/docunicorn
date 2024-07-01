@@ -3,7 +3,7 @@ import BaseLayout from '@layouts/base-layout.astro'
 import type { SidebarItem } from '@components/sidebar.astro'
 import Sidebar from '@components/sidebar.astro'
 import Toc from '@components/toc.astro'
-import { getCollection, getEntryBySlug } from 'astro:content'
+import { getCollection } from 'astro:content'
 import type { ContentCollectionKey, CollectionEntry } from 'astro:content'
 
 interface Props {
@@ -23,8 +23,11 @@ const recursionBuildSidebar = (
   const ids = entry.id.split('/')
   if (index >= ids.length) return null
 
-  const id = ids[index]
-
+  const id = ids[index] // with file extension .md or .mdx
+  const label =
+    id.endsWith('.md') || id.endsWith('.mdx')
+      ? id.slice(0, id.lastIndexOf('.'))
+      : id
   const childs = recursionBuildSidebar(entry, index + 1)
 
   let routes = collection + '/'
@@ -35,7 +38,7 @@ const recursionBuildSidebar = (
     routes = routes.split('.').slice(0, -1).join('')
   }
   let sidebar: SidebarItem = {
-    label: id,
+    label: entry.data.title || label,
     id: id,
     slug: routes,
     childs: []
@@ -69,14 +72,16 @@ const buildSidebar = (entry: CollectionEntry<ContentCollectionKey>) => {
 entries.forEach((entry) => {
   buildSidebar(entry)
 })
+
+console.log(JSON.stringify(sidebars))
 ---
 
 <BaseLayout>
-  <div class='grid grid-cols-3'>
+  <div class='flex w-full'>
     <Sidebar sidebars={sidebars} />
-    <main>
+    <main class='container px-3 py-4'>
       <slot />
+      <Toc />
     </main>
-    <Toc />
   </div>
 </BaseLayout>

@@ -3,11 +3,23 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@config": ["site.config.ts"],
-      "@components/*": ["components/*"],
-      "@layouts/*": ["layouts/*"],
-      "@pages/*": ["pages/*"],
-      "@assets/*": ["assets/*"]
-    }
+      "@config": [
+        "site.config.ts"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@layouts/*": [
+        "layouts/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   }
 }

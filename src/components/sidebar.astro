@@ -1,4 +1,6 @@
 ---
+import SidebarGroup from '@components/sidebar-group.astro'
+
 export type SidebarItem = {
   label: string
   id: string
@@ -8,29 +10,15 @@ export type SidebarItem = {
 
 interface Props {
   sidebars: SidebarItem[]
-  hierarchy?: number
 }
 
-const { sidebars, hierarchy = 0 } = Astro.props
+const { sidebars } = Astro.props
 ---
 
-<aside class='h-full bg-red-100'>
+<aside class='h-full w-64 border-r px-3 pt-4'>
   {
     sidebars.map((sidebar) => {
-      return (
-        <div id={`hierarchy-${hierarchy}`}>
-          <div class:list={[`text-xl font-semibold`]}>
-            {sidebar.label} {sidebar.childs.length > 0 && <button>+</button>}
-          </div>
-          {sidebar.childs.length === 0 && (
-            <a href={`/${sidebar.slug}`}>{sidebar.label}</a>
-          )}
-          <Astro.self
-            sidebars={sidebar.childs}
-            hierarchy={hierarchy + 1}
-          />
-        </div>
-      )
+      return <SidebarGroup sidebar={sidebar} />
     })
   }
 </aside>

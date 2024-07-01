@@ -1,0 +1,48 @@
+---
+import Accordion from '@components/accordion'
+import type { SidebarItem } from '@components/sidebar.astro'
+
+interface Props {
+  sidebar: SidebarItem
+}
+const { sidebar } = Astro.props
+
+const pathname = Astro.url.pathname
+console.log(pathname)
+---
+
+<div class='text-sm'>
+  {
+    sidebar.childs.length > 0 ? (
+      <Accordion
+        client:visible
+        title={sidebar.label}
+      >
+        <ul class='mt-1 pl-3'>
+          {sidebar.childs.map((child) => {
+            return (
+              <li>
+                <Astro.self sidebar={child} />
+              </li>
+            )
+          })}
+        </ul>
+      </Accordion>
+    ) : (
+      <a
+        href={`/${sidebar.slug}`}
+        class:list={[
+          'text-neutral-500 transition-all hover:font-medium hover:text-gray-700',
+          pathname === `/${sidebar.slug}` && 'font-medium text-gray-700'
+        ]}
+      >
+        <div class='py-1'>{sidebar.label}</div>
+      </a>
+    )
+  }
+</div>
+
+<script>
+  const { pathname } = window.location
+  console.log(pathname)
+</script>

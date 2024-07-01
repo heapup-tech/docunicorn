@@ -32,6 +32,13 @@ const { title } = Astro.props
       content={Astro.generator}
     />
     <title>{title || config.site.name}</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        text-size-adjust: none;
+      }
+    </style>
   </head>
   <body>
     <div
@@ -39,7 +46,7 @@ const { title } = Astro.props
       id='layout'
     >
       <AppHeader />
-      <main class='shrink-0 grow'>
+      <main class='flex flex-1'>
         <slot />
       </main>
       <AppFooter />

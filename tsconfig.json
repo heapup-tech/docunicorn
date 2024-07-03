@@ -1,25 +1,7 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-      "@config": [
-        "site.config.ts"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@layouts/*": [
-        "layouts/*"
-      ],
-      "@pages/*": [
-        "pages/*"
-      ],
-      "@assets/*": [
-        "assets/*"
-      ]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "baseUrl": "."
   }
 }

@@ -6,14 +6,6 @@ export default {
     'prettier-plugin-organize-imports',
     'prettier-plugin-packagejson'
   ],
-  overrides: [
-    {
-      files: '*.astro',
-      options: {
-        parser: 'astro'
-      }
-    }
-  ],
   semi: false,
   endOfLine: 'auto',
   singleQuote: true,

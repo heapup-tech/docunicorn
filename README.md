@@ -1,41 +1,46 @@
-# Website
+# HeapUp Document Template
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This template is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-### Installation
+### Running Local
 
+We recommend using pnpm.
+
+```bash
+pnpm install
+pnpm start
 ```
-$ yarn
-```
-
-### Local Development
-
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
 ### Build
 
-```
-$ yarn build
+```bash
+pnpm build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-### Deployment
+### Override Component
 
-Using SSH:
+Get an overview of all the themes and components available to swizzle, run:
 
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+```bash
+pnpm run swizzle --list
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Swizzling components, you have two choices:
+
+1. Ejecting a theme component, run:
+
+```bash
+pnpm run swizzle [theme name] [component name] --eject
+```
+
+Ejecting a theme component is the process of creating a copy of the original theme component, which you can fully customize and override.
+
+2. Wrapping a theme component, run:
+
+```bash
+pnpm run swizzle [theme name] [component name] --wrap
+```
+
+Wrapping a theme component is the process of creating a wrapper around the original theme component, which you can enhance.

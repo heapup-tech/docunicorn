@@ -1,10 +1,12 @@
-export default function ArrowRight() {
+type IconProps = React.HTMLAttributes<SVGElement>
+export default function ArrowRight(props: IconProps) {
   return (
     <svg
       width='11'
       height='10'
       viewBox='0 0 11 10'
       className='group transition-all delay-0 duration-100 ease-linear hover:translate-x-1 group-hover:translate-x-1'
+      {...props}
     >
       <rect
         y='4.25'

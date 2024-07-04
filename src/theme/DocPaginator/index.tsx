@@ -7,7 +7,7 @@ export default function DocPaginator(props: Props): JSX.Element {
   const { previous, next } = props
   return (
     <nav
-      className='pagination-nav docusaurus-mt-lg'
+      className='pagination-nav docusaurus-mt-lg gap-x-6'
       aria-label={translate({
         id: 'theme.docs.paginator.navAriaLabel',
         message: 'Docs pages',

@@ -5,21 +5,21 @@
 @layer base {
   :root {
     --ifm-color-primary: 0 0% 98%;
-    --ifm-color-primary-dark: #29784c;
+    /* --ifm-color-primary-dark: #29784c;
     --ifm-color-primary-darker: #277148;
     --ifm-color-primary-darkest: #205d3b;
     --ifm-color-primary-light: #33925d;
     --ifm-color-primary-lighter: #359962;
-    --ifm-color-primary-lightest: #3cad6e;
+    --ifm-color-primary-lightest: #3cad6e; */
     --ifm-code-font-size: 95%;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-    --ifm-menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>') !important;
-    /* --doc-sidebar-width: 250px !important; */
+    --ifm-menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="gray" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>') !important;
+    --doc-sidebar-width: 250px !important;
+    --ifm-h1-font-size: 1.5rem;
   }
 
   /* For readability concerns, you should choose a lighter palette in dark mode. */
   [data-theme='dark'] {
-    --ifm-color-primary: #25c2a0;
     --ifm-color-primary-dark: #21af90;
     --ifm-color-primary-darker: #1fa588;
     --ifm-color-primary-darkest: #1a8870;
@@ -33,6 +33,9 @@
 @layer base {
   body {
     @apply antialiased;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+      'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji',
+      'Segoe UI Symbol';
   }
 }
 /*  */
@@ -52,7 +55,11 @@
   .menu__link--active {
     font-variation-settings: 'wght' 600;
   }
+
   .menu__list-item-collapsible:hover {
+    @apply !bg-inherit;
+  }
+  .menu__list-item-collapsible--active {
     @apply !bg-inherit;
   }
   .menu__link--active:not(.menu__link--sublist) {
@@ -60,6 +67,9 @@
   }
   .menu__list-item:not(:first-child) {
     @apply !mt-0;
+  }
+  .menu__link--sublist:hover {
+    font-variation-settings: 'wght' 600;
   }
 
   .menu__link--sublist-caret:after {
@@ -69,5 +79,64 @@
     height: 1rem !important;
     transform: rotate(180deg);
     width: 1rem !important;
+  }
+  .menu__caret:before {
+    content: '';
+    min-width: 1rem !important;
+    background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem !important;
+    height: 1rem !important;
+    transform: rotate(180deg);
+    width: 1rem !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h5 {
+    @apply !text-zinc-700 !font-semibold;
+  }
+  [data-theme='dark'] {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h5 {
+      @apply !text-zinc-50;
+    }
+  }
+  h1 {
+    @apply !text-2xl;
+  }
+
+  h2 {
+    @apply !text-xl;
+  }
+
+  h3 {
+    @apply !text-lg;
+  }
+
+  h4 {
+    @apply !text-base;
+  }
+
+  h5 {
+    @apply !text-sm;
+  }
+
+  h6 {
+    @apply !text-xs;
+  }
+
+  .navbar {
+    @apply md:!bg-transparent md:!backdrop-blur-md !border-b !border-b-gray-200 !shadow-none;
+    border-bottom-style: solid;
+  }
+
+  [data-theme='dark'] .navbar {
+    @apply !border-b-gray-800;
   }
 }

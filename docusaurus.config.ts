@@ -17,7 +17,7 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en']
+    locales: ['en', 'zh']
   },
   plugins: plugins,
   presets: presets,

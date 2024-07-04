@@ -16,10 +16,12 @@ import ErrorPageContent from '@theme/ErrorPageContent'
 import type { Props } from '@theme/Layout'
 import styles from './styles.module.css'
 
-export default function Layout(props: Props): JSX.Element {
+export default function Layout(
+  props: Props & { showFooter: boolean }
+): JSX.Element {
   const {
     children,
-    noFooter,
+    showFooter,
     wrapperClassName,
     // Not really layout-related, but kept for convenience/retro-compatibility
     title,
@@ -54,7 +56,7 @@ export default function Layout(props: Props): JSX.Element {
         </ErrorBoundary>
       </div>
 
-      {!noFooter && <Footer />}
+      {showFooter && <Footer />}
     </LayoutProvider>
   )
 }

@@ -10,18 +10,12 @@ const presets = [
       docs: {
         path: './content',
         routeBasePath: '/',
-        sidebarPath: require.resolve('./sidebars.ts'),
-        // Please change this to your repo.
-        // Remove this to remove the "edit this page" links.
-        editUrl:
-          'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/'
+        showLastUpdateTime: true,
+        sidebarPath: require.resolve('./sidebars.ts')
       },
       blog: {
-        showReadingTime: true,
-        // Please change this to your repo.
-        // Remove this to remove the "edit this page" links.
-        editUrl:
-          'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/'
+        path: 'blog',
+        showReadingTime: true
       },
       theme: {
         customCss: './src/css/globals.css'

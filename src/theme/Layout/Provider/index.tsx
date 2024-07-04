@@ -1,14 +1,14 @@
-import React from 'react'
-import { composeProviders } from '@docusaurus/theme-common'
+import React from 'react';
+import {composeProviders} from '@docusaurus/theme-common';
 import {
   ColorModeProvider,
   AnnouncementBarProvider,
   DocsPreferredVersionContextProvider,
   ScrollControllerProvider,
   NavbarProvider,
-  PluginHtmlClassNameProvider
-} from '@docusaurus/theme-common/internal'
-import type { Props } from '@theme/Layout/Provider'
+  PluginHtmlClassNameProvider,
+} from '@docusaurus/theme-common/internal';
+import type {Props} from '@theme/Layout/Provider';
 
 const Provider = composeProviders([
   ColorModeProvider,
@@ -16,9 +16,9 @@ const Provider = composeProviders([
   ScrollControllerProvider,
   DocsPreferredVersionContextProvider,
   PluginHtmlClassNameProvider,
-  NavbarProvider
-])
+  NavbarProvider,
+]);
 
-export default function LayoutProvider({ children }: Props): JSX.Element {
-  return <Provider>{children}</Provider>
+export default function LayoutProvider({children}: Props): JSX.Element {
+  return <Provider>{children}</Provider>;
 }

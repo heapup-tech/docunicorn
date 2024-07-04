@@ -6,9 +6,9 @@ const theme = {
   image: 'img/docusaurus-social-card.jpg',
   defaultMode: 'dark',
   navbar: {
-    title: 'My Site',
+    title: 'Doc Site',
     logo: {
-      alt: 'My Site Logo',
+      alt: 'Doc Site Logo',
       src: 'img/logo.png'
     },
     items: [

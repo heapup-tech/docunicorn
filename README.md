@@ -1,46 +1,36 @@
-# HeapUp Document Template
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This template is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+## Getting Started
 
-### Running Local
-
-We recommend using pnpm.
+First, run the development server:
 
 ```bash
-pnpm install
-pnpm start
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Build
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-pnpm build
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-### Override Component
+## Learn More
 
-Get an overview of all the themes and components available to swizzle, run:
+To learn more about Next.js, take a look at the following resources:
 
-```bash
-pnpm run swizzle --list
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Swizzling components, you have two choices:
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-1. Ejecting a theme component, run:
+## Deploy on Vercel
 
-```bash
-pnpm run swizzle [theme name] [component name] --eject
-```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Ejecting a theme component is the process of creating a copy of the original theme component, which you can fully customize and override.
-
-2. Wrapping a theme component, run:
-
-```bash
-pnpm run swizzle [theme name] [component name] --wrap
-```
-
-Wrapping a theme component is the process of creating a wrapper around the original theme component, which you can enhance.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -4,19 +4,15 @@ import rehypeSlug from 'rehype-slug'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
-export const Post = defineDocumentType(() => ({
+export const Doc = defineDocumentType(() => ({
   name: 'Doc',
   filePathPattern: 'docs/**/*.mdx',
   contentType: 'mdx',
   fields: {
-    title: {
-      type: 'string',
-      required: true
-    },
-    description: {
-      type: 'string',
-      required: false
-    }
+    title: { type: 'string', required: true },
+    description: { type: 'string', required: false },
+    draft: { type: 'boolean', required: false, default: false },
+    toc: { type: 'boolean', default: true, required: false }
   },
   computedFields: {
     slug: {
@@ -31,8 +27,8 @@ export const Post = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-  contentDirPath: './src/content',
-  documentTypes: [Post],
+  contentDirPath: './content',
+  documentTypes: [Doc],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

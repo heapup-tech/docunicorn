@@ -1,6 +1,9 @@
-import { withContentLayer } from 'next-contentlayer'
+import { createContentlayerPlugin } from 'next-contentlayer'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {}
 
-export default withContentLayer(nextConfig)
+const withContentlayer = createContentlayerPlugin({
+  // Additional Contentlayer config options
+})
+export default withContentlayer(nextConfig)

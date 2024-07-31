@@ -20,8 +20,13 @@ export const docsConfig = {
       title: 'Getting Started',
       items: [
         {
-          title: 'Basic',
-          href: '/docs/basic',
+          title: 'Markdown',
+          href: '/docs/markdown',
+          items: []
+        },
+        {
+          title: 'Built-in Mdx Components',
+          href: '/docs/mdx',
           items: []
         }
       ]

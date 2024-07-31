@@ -6,7 +6,6 @@ import { Accordion, AccordionContent, AccordionItem } from './ui/accordion'
 import { Alert, AlertDescription, AlertTitle } from './ui/alert'
 import { cn } from '@/lib/utils'
 import { Callout } from './callout'
-import { CodeBlockWrapper } from './code-block-wrapper'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import Link from 'next/link'
 import { CopyButton } from './copy-button'
@@ -181,7 +180,7 @@ const components = {
   ),
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr
-      className={cn('m-0 border-t p-0 even:bg-muted', className)}
+      className={cn('m-0 border-t p-0 even:bg-primary/20', className)}
       {...props}
     />
   ),
@@ -209,13 +208,6 @@ const components = {
         'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm ',
         className
       )}
-      {...props}
-    />
-  ),
-  Callout,
-  CodeBlockWrapper: ({ ...props }) => (
-    <CodeBlockWrapper
-      className='rounded-md border'
       {...props}
     />
   ),

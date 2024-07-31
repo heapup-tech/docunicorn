@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { SidebarNavItem } from '@/types/nav'
-
+import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 export interface DocsSidebarNavProps {
@@ -52,10 +52,10 @@ export function DocsSidebarNavItems({
             key={index}
             href={item.href}
             className={cn(
-              'group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
-              item.disabled && 'cursor-not-allowed opacity-60',
+              'group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:text-primary hover:translate-x-1 transition-transform',
+              item.disabled && 'cursor-not-allowed opacity-60 ',
               pathname === item.href
-                ? 'font-medium text-foreground'
+                ? 'font-medium text-primary translate-x-1'
                 : 'text-muted-foreground'
             )}
             target={item.external ? '_blank' : ''}

@@ -12,11 +12,11 @@
   @apply px-4 min-h-[1rem] py-0.5 w-full inline-block;
 }
 
-[data-rehype-pretty-code-figure] [data-line-numbers] .line {
+[data-rehype-pretty-code-figure] [data-line-numbers] [data-line] {
   @apply px-2;
 }
 
-[data-rehype-pretty-code-figure] [data-line-numbers] > .line::before {
+[data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
   @apply text-zinc-50/40 text-xs;
   counter-increment: line;
   content: counter(line);
@@ -24,4 +24,36 @@
   width: 1.8rem;
   margin-right: 1.4rem;
   text-align: right;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  @apply bg-zinc-700/50;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line] > span {
+  @apply relative;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-chars] {
+  @apply rounded-md border-zinc-700/70 bg-zinc-700/50 p-1;
+}
+
+.dark [data-rehype-pretty-code-figure] [data-highlighted-chars] {
+  @apply bg-zinc-900;
+}
+
+[data-rehype-pretty-code-title] {
+  @apply mt-2 px-4 pt-6 text-sm font-medium text-foreground;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  @apply mt-2;
+}
+
+.mdx > .steps:first-child > h3:first-child {
+  @apply mt-0;
+}
+
+.steps > h3 {
+  @apply mb-4 mt-8 text-base font-semibold;
 }

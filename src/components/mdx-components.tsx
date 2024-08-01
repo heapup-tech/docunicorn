@@ -1,14 +1,14 @@
-// @ts-nocheck
-'use client'
-import { useEffect, useRef, useState } from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import { Accordion, AccordionContent, AccordionItem } from './ui/accordion'
-import { Alert, AlertDescription, AlertTitle } from './ui/alert'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem
+} from '@/components/ui/accordion'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { cn } from '@/lib/utils'
-import { Callout } from './callout'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Link from 'next/link'
-import { CopyButton } from './copy-button'
+import { CopyButton } from '@/components/copy-button'
 
 export const styles = [
   {
@@ -84,24 +84,30 @@ const components = {
       {...props}
     />
   ),
-  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const preRef = useRef<HTMLElement | null>(null)
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [code, setCode] = useState<string | undefined>(undefined)
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      if (preRef.current) {
-        const codeElement = preRef.current.querySelector('code')
-        const code = codeElement!.innerText.replace(/\n{2,}/g, '\n')
-        setCode(code)
-      }
-    }, [preRef])
+  pre: ({
+    className,
+    __rawString__,
+    __npmCommand__,
+    __pnpmCommand__,
+    __yarnCommand__,
+    __bunCommand__,
+    __withMeta__,
+    __src__,
+    __name__,
+    ...props
+  }: React.HTMLAttributes<HTMLPreElement> & {
+    // __style__?: Style["name"]
+    __rawString__?: string
+    __npmCommand__?: string
+    __pnpmCommand__?: string
+    __yarnCommand__?: string
+    __bunCommand__?: string
+    __withMeta__?: boolean
+    __src__?: string
+    __name__?: string
+  }) => {
     return (
-      <div
-        className={cn('relative')}
-        ref={preRef}
-      >
+      <>
         <pre
           className={cn(
             'mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900',
@@ -109,11 +115,14 @@ const components = {
           )}
           {...props}
         />
-        <CopyButton
-          className='absolute right-4 top-4 text-white'
-          value={code}
-        />
-      </div>
+        {__rawString__ && (
+          <CopyButton
+            value={__rawString__}
+            src={__src__}
+            className={cn('absolute right-4 top-4', __withMeta__ && 'top-16')}
+          />
+        )}
+      </>
     )
   },
   a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (

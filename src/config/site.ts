@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: 'smartkit',
-  url: 'https://smartkit.vercel.app',
-  description: 'Connect to the sui network in a simple way.',
+  name: 'Docunicorn',
+  url: '/',
+  description: 'Heapup Tech Documentation Template',
   links: {
-    github: 'https://github.com/heapup-tech/smartkit'
+    github: 'https://github.com/heapup-tech/Docunicorn'
   }
 }
 

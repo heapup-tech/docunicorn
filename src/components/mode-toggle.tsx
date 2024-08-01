@@ -7,12 +7,10 @@ import { Button } from './ui/button'
 export default function ModeToggle() {
   const { theme, setTheme } = useTheme()
 
-  console.log(theme)
-
   return (
     <Button
       variant='outline'
-      className='p-2'
+      className='p-2 border-none shadow-none'
       onClick={() => {
         setTheme(theme === 'dark' ? 'light' : 'dark')
       }}

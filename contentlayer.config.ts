@@ -1,7 +1,7 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
-import rehypePrettyCode from 'rehype-pretty-code'
+import rehypePrettyCode, { LineElement } from 'rehype-pretty-code'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 export const Doc = defineDocumentType(() => ({
@@ -38,8 +38,7 @@ export default makeSource({
         // @ts-ignore
         rehypePrettyCode,
         {
-          theme: 'dark-plus',
-          keepBackground: false
+          theme: 'github-dark-default'
         }
       ]
     ]

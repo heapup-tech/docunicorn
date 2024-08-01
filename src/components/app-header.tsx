@@ -15,7 +15,7 @@ export default function AppHeader() {
             className='mr-6 flex items-center space-x-2'
           >
             <span className='invisible md:visible font-bold sm:inline-block'>
-              SmartKit
+              {siteConfig.name}
             </span>
           </Link>
           <nav className='flex items-center gap-4 text-sm lg:gap-6'>

@@ -4,7 +4,6 @@ import rehypeSlug from 'rehype-slug'
 import rehypePrettyCode, { LineElement } from 'rehype-pretty-code'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { visit } from 'unist-util-visit'
-import { UnistNode } from '@/types/unist'
 
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
@@ -49,10 +48,12 @@ export default makeSource({
         // @ts-ignore
         rehypePrettyCode,
         {
-          theme: 'github-dark-default'
+          theme: {
+            light: 'light-plus',
+            dark: 'dracula'
+          }
         }
       ],
-
       () => (tree) => {
         visit(tree, (node) => {
           if (node?.type === 'element' && node?.tagName === 'figure') {

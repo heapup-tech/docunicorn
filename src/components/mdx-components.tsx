@@ -12,6 +12,7 @@ import dynamic from 'next/dynamic'
 import { CopyButton } from '@/components/copy-button'
 import { ManifestConfig, generateManifest } from 'material-icon-theme'
 import { ComponentType, HTMLAttributes, SVGProps } from 'react'
+const FileIcon = dynamic(() => import('./file-icon'), { ssr: false })
 
 const config: ManifestConfig = {
   activeIconPack: 'react',
@@ -119,11 +120,7 @@ const components = {
     __rawString__?: string
     __language__?: string
   }) => {
-    const language = __language__ || manifest.file
-
-    const Icon = dynamic(
-      () => import(`material-icon-theme/icons/${language}.svg`)
-    ) as ComponentType<SVGProps<SVGSVGElement>>
+    const language = __language__ || manifest.file!
 
     return (
       <div
@@ -131,7 +128,10 @@ const components = {
         className={cn(className)}
       >
         <div className='flex items-center'>
-          <Icon className='w-6 h-6 mr-2' />
+          <FileIcon
+            extension={language}
+            className='w-6 h-6 mr-2'
+          />
           {props.children}
         </div>
 
@@ -159,7 +159,7 @@ const components = {
       <>
         <pre
           className={cn(
-            'mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900',
+            'mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border  py-4 ',
             className,
             __withTitle__ && 'mt-0 rounded-tl-none rounded-tr-none'
           )}

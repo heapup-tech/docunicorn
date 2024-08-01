@@ -2,10 +2,39 @@
 title: Markdown
 ---
 
-```typescript title="example.ts"
-npx create-next-app@latest
+```typescript title="example.ts" showLineNumbers {5}
+export function DocPager({ doc }: DocsPagerProps) {
+  const pager = getPagerForDoc(doc)
+
+  if (!pager) {
+    return null
+  }
+
+  return (
+    <div className='flex flex-row items-center justify-between'>
+      {pager?.prev?.href && (
+        <Link
+          href={pager.prev.href}
+          className={buttonVariants({ variant: 'outline' })}
+        >
+          <ChevronLeftIcon className='mr-2 size-4' />
+          {pager.prev.title}
+        </Link>
+      )}
+      {pager?.next?.href && (
+        <Link
+          href={pager.next.href}
+          className={cn(buttonVariants({ variant: 'outline' }), 'ml-auto')}
+        >
+          {pager.next.title}
+          <ChevronRightIcon className='ml-2 size-4' />
+        </Link>
+      )}
+    </div>
+  )
+}
 ```
 
-```javascript title="example.json"
+```console title="example.json"
 npx create-next-app@latest
 ```

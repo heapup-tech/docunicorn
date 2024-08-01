@@ -105,6 +105,12 @@ importers:
       typescript:
         specifier: ^5
         version: 5.5.4
+      unist-builder:
+        specifier: ^4.0.0
+        version: 4.0.0
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
 
 packages:
 
@@ -2891,6 +2897,9 @@ packages:
 
   unified@11.0.5:
     resolution: {integrity: sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==}
+
+  unist-builder@4.0.0:
+    resolution: {integrity: sha512-wmRFnH+BLpZnTKpc5L7O67Kac89s9HMrtELpnNaE6TAobq5DTZZs5YaTQfAZBA9bFPECx2uVAPO31c+GVug8mg==}
 
   unist-util-generated@2.0.1:
     resolution: {integrity: sha512-qF72kLmPxAw0oN2fwpWIqbXAVyEqUzDHMsbtPvOudIlUzXYFIeQIuxXQCRCFh22B7cixvU0MG7m3MW8FTq/S+A==}
@@ -6590,6 +6599,10 @@ snapshots:
       is-plain-obj: 4.1.0
       trough: 2.2.0
       vfile: 6.0.2
+
+  unist-builder@4.0.0:
+    dependencies:
+      '@types/unist': 3.0.2
 
   unist-util-generated@2.0.1: {}
 

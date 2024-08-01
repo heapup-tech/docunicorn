@@ -43,12 +43,12 @@
 }
 
 [data-rehype-pretty-code-title] {
-  @apply mt-2 px-4 pt-6 text-sm font-medium text-foreground;
+  @apply mt-2 flex justify-between items-center bg-muted rounded-tl-lg rounded-tr-lg text-gray-500 text-sm p-4;
 }
 
-[data-rehype-pretty-code-title] + pre {
+/* [data-rehype-pretty-code-title] + pre {
   @apply mt-2;
-}
+} */
 
 .mdx > .steps:first-child > h3:first-child {
   @apply mt-0;

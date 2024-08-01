@@ -8,7 +8,33 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { cn } from '@/lib/utils'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { CopyButton } from '@/components/copy-button'
+import { ManifestConfig, generateManifest } from 'material-icon-theme'
+import { ComponentType, HTMLAttributes, SVGProps } from 'react'
+
+const config: ManifestConfig = {
+  activeIconPack: 'react',
+  hidesExplorerArrows: true,
+  folders: {
+    theme: 'classic',
+    associations: {}
+  },
+  files: {
+    associations: {
+      ts: 'typescript',
+      js: 'javascript'
+    }
+  },
+  languages: {
+    associations: {
+      ts: 'typescript',
+      js: 'javascript'
+    }
+  }
+}
+
+const manifest = generateManifest(config)
 
 export const styles = [
   {
@@ -84,43 +110,66 @@ const components = {
       {...props}
     />
   ),
+  figcaption: async ({
+    className,
+    __rawString__,
+    __language__,
+    ...props
+  }: React.HTMLAttributes<HTMLDivElement> & {
+    __rawString__?: string
+    __language__?: string
+  }) => {
+    const language = __language__ || manifest.file
+
+    const Icon = dynamic(
+      () => import(`material-icon-theme/icons/${language}.svg`)
+    ) as ComponentType<SVGProps<SVGSVGElement>>
+
+    return (
+      <div
+        {...props}
+        className={cn(className)}
+      >
+        <div className='flex items-center'>
+          <Icon className='w-6 h-6 mr-2' />
+          {props.children}
+        </div>
+
+        {__rawString__ && (
+          <CopyButton
+            value={__rawString__}
+            className={cn(
+              'absolute right-4 top-4 text-zinc-500 dark:text-zinc-400'
+            )}
+          />
+        )}
+      </div>
+    )
+  },
   pre: ({
     className,
     __rawString__,
-    __npmCommand__,
-    __pnpmCommand__,
-    __yarnCommand__,
-    __bunCommand__,
-    __withMeta__,
-    __src__,
-    __name__,
+    __withTitle__,
     ...props
   }: React.HTMLAttributes<HTMLPreElement> & {
-    // __style__?: Style["name"]
     __rawString__?: string
-    __npmCommand__?: string
-    __pnpmCommand__?: string
-    __yarnCommand__?: string
-    __bunCommand__?: string
-    __withMeta__?: boolean
-    __src__?: string
-    __name__?: string
+    __withTitle__?: boolean
   }) => {
     return (
       <>
         <pre
           className={cn(
             'mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900',
-            className
+            className,
+            __withTitle__ && 'mt-0 rounded-tl-none rounded-tr-none'
           )}
           {...props}
         />
 
-        {__rawString__ && (
+        {__rawString__ && !__withTitle__ && (
           <CopyButton
             value={__rawString__}
-            src={__src__}
-            className={cn('absolute right-4 top-4', __withMeta__ && 'top-16')}
+            className={cn('absolute right-4 top-4', __withTitle__ && 'top-16')}
           />
         )}
       </>

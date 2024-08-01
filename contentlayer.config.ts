@@ -37,17 +37,11 @@ export default makeSource({
       rehypeSlug,
       () => (tree) => {
         visit(tree, (node) => {
-          // console.log(node)
           if (node?.type === 'element' && node?.tagName === 'pre') {
             const [codeEl] = node.children
 
             if (codeEl.tagName !== 'code') return
-
-            // console.log(codeEl.children?.[0].value)
-
             node.__rawString__ = codeEl.children?.[0].value
-            node.__src__ = node.properties?.__src__
-            node.__style__ = node.properties?.__style__
           }
         })
       },
@@ -67,21 +61,30 @@ export default makeSource({
             const preElement = node.children.at(-1)
             if (preElement.tagName !== 'pre') return
 
-            preElement.properties['__withMeta__'] =
+            preElement.properties['__withTitle__'] =
               node.children.at(0).tagName === 'figcaption'
-
             preElement.properties['__rawString__'] = node.__rawString__
-
-            if (node.__src__) preElement.properties['__src__'] = node.__src__
-
-            if (node.__style__)
-              preElement.properties['__style__'] = node.__style__
-
-            console.log(preElement)
           }
         })
       },
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === 'element' && node?.tagName === 'figure') {
+            if (!('data-rehype-pretty-code-figure' in node.properties)) return
 
+            const codeTitleElement = node.children.at(0)
+
+            if (codeTitleElement.tagName !== 'figcaption') return
+            codeTitleElement.properties['__rawString__'] = node.__rawString__
+
+            codeTitleElement.properties['__rawString__'] = node.__rawString__
+
+            if (codeTitleElement.properties['data-language'])
+              codeTitleElement.properties['__language__'] =
+                codeTitleElement.properties['data-language']
+          }
+        })
+      },
       [
         rehypeAutolinkHeadings,
         {

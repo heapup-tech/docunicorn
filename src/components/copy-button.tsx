@@ -7,15 +7,9 @@ import { Button, ButtonProps } from '@/components/ui/button'
 
 interface CopyButtonProps extends ButtonProps {
   value: string
-  src?: string
 }
 
-export function CopyButton({
-  className,
-  value,
-  src,
-  ...props
-}: CopyButtonProps) {
+export function CopyButton({ className, value, ...props }: CopyButtonProps) {
   const [copied, setCopied] = React.useState(false)
 
   React.useEffect(() => {

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
 import Providers from './providers'
 import AppHeader from '@/components/app-header'
+import AppFooter from '@/components/app-footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,8 +21,11 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         <Providers>
-          <AppHeader />
-          {children}
+          <div className='flex flex-col justify-between min-h-screen'>
+            <AppHeader />
+            {children}
+            <AppFooter />
+          </div>
         </Providers>
       </body>
     </html>

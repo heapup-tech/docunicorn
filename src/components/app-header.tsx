@@ -1,33 +1,26 @@
+'use client'
+
 import Link from 'next/link'
 import { Icons } from './icons'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from './ui/button'
 import { siteConfig } from '@/config/site'
 import dynamic from 'next/dynamic'
+import { docsConfig } from '@/config/docs'
+import { usePathname } from 'next/navigation'
+import { ExternalLinkIcon } from '@radix-ui/react-icons'
+import { MobileNav } from './mobile-nav'
+import { MainNav } from './main-nav'
 const ModeToggle = dynamic(() => import('./mode-toggle'), { ssr: false })
 
 export default function AppHeader() {
+  const pathname = usePathname()
+
   return (
-    <header className='sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-sm'>
-      <div className='container flex h-20 max-w-screen-2xl items-center flex-between'>
-        <div className='mr-4 invisible md:flex md:visible'>
-          <Link
-            href='/'
-            className='mr-6 flex items-center space-x-2'
-          >
-            <span className='invisible md:visible font-bold sm:inline-block'>
-              {siteConfig.name}
-            </span>
-          </Link>
-          <nav className='flex items-center gap-4 text-sm lg:gap-6'>
-            <Link
-              className='transition-colors hover:text-foreground/80 text-foreground/60'
-              href='/docs'
-            >
-              Docs
-            </Link>
-          </nav>
-        </div>
+    <header className='sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-sm bg-transparent'>
+      <div className='container flex h-16 items-center flex-between'>
+        <MainNav />
+        <MobileNav />
         <div className='flex flex-1 items-center space-x-2 justify-end'>
           <Link
             href={siteConfig.links.github}

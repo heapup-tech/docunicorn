@@ -7,6 +7,9 @@ import Balancer from 'react-wrap-balancer'
 import '@/styles/mdx.css'
 import { Mdx } from '@/components/mdx-components'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
+import { getTableOfContents } from '@/lib/toc'
+import { ScrollArea } from '@radix-ui/react-scroll-area'
+import { TableOfContents } from '@/components/toc'
 
 interface DocPageProps {
   params: {
@@ -39,8 +42,16 @@ export default async function DocPage({ params }: DocPageProps) {
     notFound()
   }
 
+  const toc = await getTableOfContents(doc.body.raw)
+
+  console.log(JSON.stringify(toc))
+
   return (
-    <main className='relative py-6 lg:gap-10 lg:py-8 xl:grid '>
+    <main
+      className={cn('relative py-6 lg:gap-10 lg:py-8 xl:grid ', {
+        'xl:grid-cols-[1fr_250px]': doc.toc
+      })}
+    >
       <div className='mx-auto w-full min-w-0'>
         <div className='mb-4 flex items-center space-x-1 text-sm text-muted-foreground'>
           <div className='overflow-hidden text-ellipsis whitespace-nowrap'>
@@ -63,6 +74,18 @@ export default async function DocPage({ params }: DocPageProps) {
           <Mdx code={doc.body.code} />
         </div>
       </div>
+      {doc.toc && (
+        <div className='hidden text-sm xl:block'>
+          <div className='sticky top-16 -mt-10 pt-4'>
+            <ScrollArea className='pb-10'>
+              <div className='space-y-4 sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] py-12'>
+                <TableOfContents toc={toc} />
+                {/* <Contribute doc={doc} /> */}
+              </div>
+            </ScrollArea>
+          </div>
+        </div>
+      )}
     </main>
   )
 }

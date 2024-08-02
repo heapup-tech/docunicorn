@@ -1,18 +1,24 @@
-export const docsConfig = {
+import { MainNavItem, SidebarNavItem } from '@/types'
+
+interface DocsConfig {
+  mainNav: MainNavItem[]
+  sidebarNav: SidebarNavItem[]
+}
+
+export const docsConfig: DocsConfig = {
   mainNav: [
     {
-      title: 'Components',
-      href: '/components'
+      title: 'Docs',
+      href: '/docs/markdown'
     },
     {
       title: 'Showcase',
       href: '/showcase'
     },
     {
-      title: 'Templates',
-      href: 'https://pro.magicui.design',
-      external: true,
-      event: 'header_cta_clicked'
+      title: 'Google',
+      href: 'https://www.google.com',
+      external: true
     }
   ],
   sidebarNav: [

@@ -48,7 +48,7 @@ code[data-theme*=' '] span {
 }
 
 [data-rehype-pretty-code-figure] [data-highlighted-line] {
-  @apply bg-zinc-300;
+  @apply bg-zinc-100;
 }
 
 .dark [data-rehype-pretty-code-figure] [data-highlighted-line] {

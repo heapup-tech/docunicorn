@@ -2,8 +2,9 @@ import Link from 'next/link'
 import { Icons } from './icons'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from './ui/button'
-import ModeToggle from './mode-toggle'
 import { siteConfig } from '@/config/site'
+import dynamic from 'next/dynamic'
+const ModeToggle = dynamic(() => import('./mode-toggle'), { ssr: false })
 
 export default function AppHeader() {
   return (

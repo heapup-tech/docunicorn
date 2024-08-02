@@ -1,5 +1,3 @@
-'use client'
-
 import dynamic from 'next/dynamic'
 import { ComponentType, SVGProps } from 'react'
 

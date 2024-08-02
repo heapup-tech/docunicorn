@@ -9,13 +9,74 @@ interface CopyButtonProps extends ButtonProps {
   value: string
 }
 
+/**
+.code-block_copyButton__uo5Yu.code-block_copyButtonCopied__fMOZ5 svg {
+    animation: code-block_hide__enoxr 1.25s forwards
+}
+
+.code-block_copyButton__uo5Yu.code-block_copyButtonCopied__fMOZ5 svg:nth-child(2) {
+    animation: code-block_show__KnRqc 1.25s .15s forwards
+}
+
+@keyframes code-block_show__KnRqc {
+    0% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(.5)
+    }
+
+    20% {
+        opacity: 1;
+        transform: translate(-50%,-50%)
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate(-50%,-50%)
+    }
+
+    80% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(.5)
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(.5)
+    }
+}
+
+@keyframes code-block_hide__enoxr {
+    0% {
+        opacity: 1;
+        transform: translate(-50%,-50%)
+    }
+
+    20% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(.5)
+    }
+
+    80% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(.5)
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%,-50%)
+    }
+}
+ */
+
 export function CopyButton({ className, value, ...props }: CopyButtonProps) {
   const [copied, setCopied] = React.useState(false)
 
   React.useEffect(() => {
-    setTimeout(() => {
-      setCopied(false)
-    }, 2000)
+    if (copied) {
+      setTimeout(() => {
+        setCopied(false)
+      }, 1400)
+    }
   }, [copied])
 
   return (
@@ -23,8 +84,10 @@ export function CopyButton({ className, value, ...props }: CopyButtonProps) {
       size='icon'
       variant='ghost'
       className={cn(
-        'relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 [&_svg]:size-3',
-        className
+        className,
+        'z-10 h-6 w-6 [&_svg]:size-5 bg-transparent hover:bg-transparent',
+        copied &&
+          '[&_svg]:animate-code-block-hide [&_svg:nth-of-type(2)]:animate-code-block-show'
       )}
       onClick={() => {
         if (navigator.clipboard) {
@@ -35,7 +98,10 @@ export function CopyButton({ className, value, ...props }: CopyButtonProps) {
       {...props}
     >
       <span className='sr-only'>Copy</span>
-      {copied ? <CheckIcon /> : <CopyIcon />}
+
+      <CopyIcon className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]' />
+
+      <CheckIcon className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] opacity-0' />
     </Button>
   )
 }

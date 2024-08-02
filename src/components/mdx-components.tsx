@@ -8,47 +8,9 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { cn } from '@/lib/utils'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import { CopyButton } from '@/components/copy-button'
-import { ManifestConfig, generateManifest } from 'material-icon-theme'
-import { ComponentType, HTMLAttributes, SVGProps } from 'react'
-const FileIcon = dynamic(() => import('./file-icon'), { ssr: false })
-
-const config: ManifestConfig = {
-  activeIconPack: 'react',
-  hidesExplorerArrows: true,
-  folders: {
-    theme: 'classic',
-    associations: {}
-  },
-  files: {
-    associations: {
-      ts: 'typescript',
-      js: 'javascript'
-    }
-  },
-  languages: {
-    associations: {
-      ts: 'typescript',
-      js: 'javascript'
-    }
-  }
-}
-
-const manifest = generateManifest(config)
-
-export const styles = [
-  {
-    name: 'default',
-    label: 'Default'
-  },
-  {
-    name: 'new-york',
-    label: 'New York'
-  }
-] as const
-
-export type Style = (typeof styles)[number]
+import manifest from '@/lib/material-icon'
+import FileIcon from '@/components/file-icon'
 
 const components = {
   Accordion,
@@ -120,7 +82,15 @@ const components = {
     __rawString__?: string
     __language__?: string
   }) => {
-    const language = __language__ || manifest.file!
+    const language = __language__ || ''
+    const title = props.children || ''
+
+    const extension =
+      manifest?.fileNames?.[title.toString()] ||
+      manifest?.fileExtensions?.[language] ||
+      manifest?.fileNames?.[language] ||
+      manifest?.languageIds?.[language] ||
+      manifest.file!
 
     return (
       <div
@@ -129,8 +99,8 @@ const components = {
       >
         <div className='flex items-center'>
           <FileIcon
-            extension={language}
-            className='w-6 h-6 mr-2'
+            extension={extension}
+            className='w-5 h-5 mr-1.5'
           />
           {props.children}
         </div>
@@ -150,10 +120,12 @@ const components = {
     className,
     __rawString__,
     __withTitle__,
+    __language__,
     ...props
   }: React.HTMLAttributes<HTMLPreElement> & {
     __rawString__?: string
     __withTitle__?: boolean
+    __language__?: string
   }) => {
     return (
       <>
@@ -169,7 +141,10 @@ const components = {
         {__rawString__ && !__withTitle__ && (
           <CopyButton
             value={__rawString__}
-            className={cn('absolute right-4 top-4', __withTitle__ && 'top-16')}
+            className={cn(
+              'absolute right-4 top-4 text-zinc-500 dark:text-zinc-400',
+              __withTitle__ && 'top-16'
+            )}
           />
         )}
       </>
@@ -264,7 +239,7 @@ const components = {
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm ',
+        'relative rounded bg-primary/30 px-[0.3rem] py-[0.2rem] font-mono text-sm ',
         className
       )}
       {...props}

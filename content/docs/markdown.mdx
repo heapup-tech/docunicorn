@@ -2,39 +2,93 @@
 title: Markdown
 ---
 
-```typescript title="example.ts" showLineNumbers {5}
-export function DocPager({ doc }: DocsPagerProps) {
-  const pager = getPagerForDoc(doc)
+# Markdown
 
-  if (!pager) {
-    return null
-  }
+## Markdown
 
-  return (
-    <div className='flex flex-row items-center justify-between'>
-      {pager?.prev?.href && (
-        <Link
-          href={pager.prev.href}
-          className={buttonVariants({ variant: 'outline' })}
-        >
-          <ChevronLeftIcon className='mr-2 size-4' />
-          {pager.prev.title}
-        </Link>
-      )}
-      {pager?.next?.href && (
-        <Link
-          href={pager.next.href}
-          className={cn(buttonVariants({ variant: 'outline' }), 'ml-auto')}
-        >
-          {pager.next.title}
-          <ChevronRightIcon className='ml-2 size-4' />
-        </Link>
-      )}
-    </div>
-  )
+### Markdown
+
+#### Markdown
+
+##### Markdown
+
+###### Markdown
+
+The `init` command installs dependencies (`framer-motion`), adds the `cn` util, configures `tailwind.config.js`, and CSS variables for the project.
+
+```bash showLineNumbers
+What is your project named? my-app
+Would you like to use TypeScript? No / Yes
+Would you like to use ESLint? No / Yes
+Would you like to use Tailwind CSS? No / Yes
+Would you like to use `src/` directory? No / Yes
+Would you like to use App Router? (recommended) No / Yes
+Would you like to customize the default import alias (@/*)? No / Yes
+What import alias would you like configured? @/*
+```
+
+```solidity title="IERC20.sol" showLineNumbers
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+interface IERC20 {
+    function totalSupply() external view returns (uint256);
+    function balanceOf(address account) external view returns (uint256);
+    function transfer(address recipient, uint256 amount)
+        external
+        returns (bool);
+    function allowance(address owner, address spender)
+        external
+        view
+        returns (uint256);
+    function approve(address spender, uint256 amount) external returns (bool);
+    function transferFrom(address sender, address recipient, uint256 amount)
+        external
+        returns (bool);
 }
 ```
 
-```console title="example.json"
+```bash title="Terminal"
 npx create-next-app@latest
 ```
+
+**Bold text**
+
+_Italic text_
+
+**_Bold & Italic text_**
+
+> reference text
+
+> > netested reference text
+
+1. First item
+2. Second item
+3. Third item
+4. Fourth item
+
+- First item
+- Second item
+- Third item
+- Fourth item
+
+- First item
+- Second item
+- Third item
+  - Indented item
+  - Indented item
+- Fourth item
+
+```ts showLineNumbers
+const a = 1
+```
+
+[Link to Google](https://www.google.com)
+
+![Image](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
+
+| 2   | 3   | 4   |
+| --- | --- | --- |
+| 2   | 3   | 4   |
+| 2   | 3   | 4   |
+| 2   | 3   | 4   |

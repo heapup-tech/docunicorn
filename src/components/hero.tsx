@@ -7,7 +7,7 @@ export default function Hero() {
     <div className='relative m-auto mt-16 flex h-96 items-center justify-center py-4 text-center'>
       <div className='relative z-10'>
         <h1 className='text-4xl font-semibold '>
-          Free document template, Powered by HeapUp
+          Free document template, Built by HeapUp
         </h1>
         <p className='mt-2 text-xl text-stone-400'>
           Build faster websites with markdown in minutes.

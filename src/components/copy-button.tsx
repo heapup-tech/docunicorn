@@ -9,65 +9,6 @@ interface CopyButtonProps extends ButtonProps {
   value: string
 }
 
-/**
-.code-block_copyButton__uo5Yu.code-block_copyButtonCopied__fMOZ5 svg {
-    animation: code-block_hide__enoxr 1.25s forwards
-}
-
-.code-block_copyButton__uo5Yu.code-block_copyButtonCopied__fMOZ5 svg:nth-child(2) {
-    animation: code-block_show__KnRqc 1.25s .15s forwards
-}
-
-@keyframes code-block_show__KnRqc {
-    0% {
-        opacity: 0;
-        transform: translate(-50%,-50%) scale(.5)
-    }
-
-    20% {
-        opacity: 1;
-        transform: translate(-50%,-50%)
-    }
-
-    60% {
-        opacity: 1;
-        transform: translate(-50%,-50%)
-    }
-
-    80% {
-        opacity: 0;
-        transform: translate(-50%,-50%) scale(.5)
-    }
-
-    to {
-        opacity: 0;
-        transform: translate(-50%,-50%) scale(.5)
-    }
-}
-
-@keyframes code-block_hide__enoxr {
-    0% {
-        opacity: 1;
-        transform: translate(-50%,-50%)
-    }
-
-    20% {
-        opacity: 0;
-        transform: translate(-50%,-50%) scale(.5)
-    }
-
-    80% {
-        opacity: 0;
-        transform: translate(-50%,-50%) scale(.5)
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%,-50%)
-    }
-}
- */
-
 export function CopyButton({ className, value, ...props }: CopyButtonProps) {
   const [copied, setCopied] = React.useState(false)
 

@@ -1,16 +1,16 @@
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import { CopyButton } from '@/components/copy-button'
+import FileIcon from '@/components/file-icon'
 import {
   Accordion,
   AccordionContent,
   AccordionItem
 } from '@/components/ui/accordion'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { cn } from '@/lib/utils'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import Link from 'next/link'
-import { CopyButton } from '@/components/copy-button'
 import manifest from '@/lib/material-icon'
-import FileIcon from '@/components/file-icon'
+import { cn } from '@/lib/utils'
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import Link from 'next/link'
 
 const components = {
   Accordion,

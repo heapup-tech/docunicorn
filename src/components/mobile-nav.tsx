@@ -1,15 +1,15 @@
 'use client'
 
-import * as React from 'react'
-import Link, { LinkProps } from 'next/link'
-import { useRouter } from 'next/navigation'
-import { SidebarOpen } from 'lucide-react'
-import { docsConfig } from '@/config/docs'
-import { siteConfig } from '@/config/site'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { docsConfig } from '@/config/docs'
+import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
+import { SidebarOpen } from 'lucide-react'
+import Link, { LinkProps } from 'next/link'
+import { useRouter } from 'next/navigation'
+import * as React from 'react'
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false)

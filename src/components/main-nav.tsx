@@ -1,11 +1,11 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { ExternalLinkIcon } from '@radix-ui/react-icons'
 import { docsConfig } from '@/config/docs'
 import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
+import { ExternalLinkIcon } from '@radix-ui/react-icons'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export function MainNav() {
   const pathname = usePathname()

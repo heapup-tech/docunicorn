@@ -1,21 +1,16 @@
 'use client'
 
+import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Icons } from './icons'
-import { cn } from '@/lib/utils'
-import { buttonVariants } from './ui/button'
-import { siteConfig } from '@/config/site'
-import dynamic from 'next/dynamic'
-import { docsConfig } from '@/config/docs'
-import { usePathname } from 'next/navigation'
-import { ExternalLinkIcon } from '@radix-ui/react-icons'
-import { MobileNav } from './mobile-nav'
 import { MainNav } from './main-nav'
+import { MobileNav } from './mobile-nav'
+import { buttonVariants } from './ui/button'
 const ModeToggle = dynamic(() => import('./mode-toggle'), { ssr: false })
 
 export default function AppHeader() {
-  const pathname = usePathname()
-
   return (
     <header className='sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-sm bg-transparent'>
       <div className='container flex h-16 items-center flex-between'>

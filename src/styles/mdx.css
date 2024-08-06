@@ -30,7 +30,7 @@ code[data-theme*=' '] span {
 }
 
 [data-rehype-pretty-code-figure] [data-line] {
-  @apply px-4 min-h-[1rem] py-0.5 w-full inline-block;
+  @apply inline-block min-h-[1rem] w-full px-4 py-0.5;
 }
 
 [data-rehype-pretty-code-figure] [data-line-numbers] [data-line] {
@@ -68,11 +68,11 @@ code[data-theme*=' '] span {
 }
 
 [data-rehype-pretty-code-title] {
-  @apply mt-2 flex justify-between items-center bg-muted rounded-tl-lg rounded-tr-lg text-gray-500 text-sm p-4;
+  @apply mt-2 flex items-center justify-between rounded-tl-lg rounded-tr-lg bg-muted p-4 text-sm text-gray-500;
 }
 
 .dark [data-rehype-pretty-code-title] {
-  @apply mt-2 flex justify-between items-center bg-muted rounded-tl-lg rounded-tr-lg text-gray-50 text-sm p-4;
+  @apply mt-2 flex items-center justify-between rounded-tl-lg rounded-tr-lg bg-muted p-4 text-sm text-gray-50;
 }
 
 /* [data-rehype-pretty-code-title] + pre {

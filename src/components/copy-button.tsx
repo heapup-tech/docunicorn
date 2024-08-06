@@ -1,9 +1,9 @@
 'use client'
 
-import * as React from 'react'
-import { CopyIcon, CheckIcon } from '@radix-ui/react-icons'
-import { cn } from '@/lib/utils'
 import { Button, ButtonProps } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { CheckIcon, CopyIcon } from '@radix-ui/react-icons'
+import * as React from 'react'
 
 interface CopyButtonProps extends ButtonProps {
   value: string

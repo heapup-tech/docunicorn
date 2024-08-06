@@ -1,6 +1,6 @@
+import ArrowRight from '@/icons/arrow-right'
 import Link from 'next/link'
 import { Button } from './ui/button'
-import ArrowRight from '@/icons/arrow-right'
 
 export default function Hero() {
   return (

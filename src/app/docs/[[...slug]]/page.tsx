@@ -1,15 +1,13 @@
-import { notFound } from 'next/navigation'
-import { allDocs } from 'contentlayer/generated'
-import { Metadata } from 'next'
-import { absoluteUrl, cn } from '@/lib/utils'
-import { siteConfig } from '@/config/site'
-import Balancer from 'react-wrap-balancer'
-import '@/styles/mdx.css'
 import { Mdx } from '@/components/mdx-components'
-import { ChevronRightIcon } from '@radix-ui/react-icons'
-import { getTableOfContents } from '@/lib/toc'
-import { ScrollArea } from '@radix-ui/react-scroll-area'
 import { TableOfContents } from '@/components/toc'
+import { getTableOfContents } from '@/lib/toc'
+import { cn } from '@/lib/utils'
+import '@/styles/mdx.css'
+import { ChevronRightIcon } from '@radix-ui/react-icons'
+import { ScrollArea } from '@radix-ui/react-scroll-area'
+import { allDocs } from 'contentlayer/generated'
+import { notFound } from 'next/navigation'
+import Balancer from 'react-wrap-balancer'
 
 interface DocPageProps {
   params: {

@@ -95,7 +95,7 @@ const components = {
     return (
       <div
         {...props}
-        className={cn(className)}
+        className={cn(className, 'border border-b-0')}
       >
         <div className='flex items-center'>
           <FileIcon

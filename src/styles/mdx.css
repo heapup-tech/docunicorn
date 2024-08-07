@@ -20,7 +20,7 @@ code[data-theme*=' '] span {
 }
 
 [data-rehype-pretty-code-figure] {
-  @apply relative text-white drop-shadow;
+  @apply relative text-white;
 }
 
 [data-rehype-pretty-code-figure] code {

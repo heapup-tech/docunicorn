@@ -1,5 +1,6 @@
-import Features from '@/components/features'
 import Hero from '@/components/hero'
+import dynamic from 'next/dynamic'
+const Features = dynamic(() => import('@/components/features'), { ssr: false })
 
 export default function Home() {
   return (

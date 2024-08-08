@@ -46,7 +46,7 @@ export default function Features() {
           />
           <h1 className={`mt-4 text-xl font-semibold mb-2`}>{feature.title}</h1>
           <p
-            className={`mt-1  ${
+            className={`mt-1 ${
               mode === 'dark' ? 'text-gray-400' : 'text-gray-500'
             }`}
           >

@@ -27,13 +27,11 @@ export const docsConfig: DocsConfig = {
       items: [
         {
           title: 'Markdown',
-          href: '/docs/markdown',
-          items: []
+          href: '/docs/markdown'
         },
         {
           title: 'Built-in Mdx Components',
-          href: '/docs/mdx',
-          items: []
+          href: '/docs/mdx'
         }
       ]
     }

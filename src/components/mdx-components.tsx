@@ -213,16 +213,28 @@ const components = {
       />
     </div>
   ),
+  thead: ({
+    className,
+    ...props
+  }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead
+      className={cn('border-b bg-muted', className)}
+      {...props}
+    />
+  ),
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr
-      className={cn('m-0 border-t p-0 even:bg-primary/20', className)}
+      className={cn(
+        'm-0 border-t p-0 hover:bg-muted/50 transition-all',
+        className
+      )}
       {...props}
     />
   ),
   th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        'border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right',
+        'border p-4 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right',
         className
       )}
       {...props}
@@ -231,7 +243,7 @@ const components = {
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        'border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right',
+        'border p-4 text-left [&[align=center]]:text-center [&[align=right]]:text-right',
         className
       )}
       {...props}

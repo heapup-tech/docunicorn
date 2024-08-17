@@ -12,10 +12,6 @@ export const docsConfig: DocsConfig = {
       href: '/docs/markdown'
     },
     {
-      title: 'Showcase',
-      href: '/showcase'
-    },
-    {
       title: 'Google',
       href: 'https://www.google.com',
       external: true

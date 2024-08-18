@@ -120,12 +120,10 @@ const components = {
     className,
     __rawString__,
     __withTitle__,
-    __language__,
     ...props
   }: React.HTMLAttributes<HTMLPreElement> & {
     __rawString__?: string
     __withTitle__?: boolean
-    __language__?: string
   }) => {
     return (
       <>

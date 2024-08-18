@@ -4,7 +4,7 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { visit } from 'unist-util-visit'
-import { isTerminalLanguage } from './src/lib/terminal'
+import { rehypeCodeBlockTitle } from './src/lib/rehype-plugin/codeblock-title'
 
 const themes = {
   light: 'light-plus',
@@ -57,59 +57,7 @@ export default makeSource({
           theme: themes
         }
       ],
-      () => (tree) => {
-        visit(tree, (node) => {
-          if (node?.type === 'element' && node?.tagName === 'figure') {
-            if (!('data-rehype-pretty-code-figure' in node.properties)) return
-
-            const preElement = node.children.at(-1)
-            if (preElement.tagName !== 'pre') return
-
-            const hasTitle = node.children.at(0).tagName === 'figcaption'
-            const language = preElement.properties['data-language']
-
-            preElement.properties['__withTitle__'] = hasTitle
-            preElement.properties['__rawString__'] = node.__rawString__
-
-            if (language) preElement.properties['__language__'] = language
-
-            if (!hasTitle && isTerminalLanguage(language)) {
-              node.children.unshift({
-                type: 'element',
-                tagName: 'figcaption',
-                properties: {
-                  'data-rehype-pretty-code-title': '',
-                  'data-language': language,
-                  'data-theme': Object.values(themes).join(' ')
-                },
-                children: [{ type: 'text', value: 'Terminal' }]
-              })
-
-              preElement.properties['__withTitle__'] = true
-            }
-          }
-        })
-      },
-      () => (tree) => {
-        // vivit code block title
-        visit(tree, (node) => {
-          if (node?.type === 'element' && node?.tagName === 'figure') {
-            if (!('data-rehype-pretty-code-figure' in node.properties)) return
-
-            const codeTitleElement = node.children.at(0)
-
-            if (codeTitleElement.tagName !== 'figcaption') return
-            codeTitleElement.properties['__rawString__'] = node.__rawString__
-
-            codeTitleElement.properties['__rawString__'] = node.__rawString__
-
-            if (codeTitleElement.properties['data-language']) {
-              codeTitleElement.properties['__language__'] =
-                codeTitleElement.properties['data-language']
-            }
-          }
-        })
-      },
+      rehypeCodeBlockTitle,
       [
         rehypeAutolinkHeadings,
         {

@@ -34,11 +34,13 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "mdast": "^3.0.0",
     "mdast-util-toc": "^7.1.0",
     "postcss": "^8",
     "prettier-plugin-organize-imports": "^4.0.0",

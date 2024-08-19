@@ -5,6 +5,7 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { visit } from 'unist-util-visit'
 import { rehypeCodeBlockTitle } from './src/lib/rehype-plugin/codeblock-title'
+import { remarkVessel } from './src/lib/remark-plugin/vessel'
 
 const themes = {
   light: 'light-plus',
@@ -37,7 +38,7 @@ export default makeSource({
   contentDirPath: './content',
   documentTypes: [Doc],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkVessel],
     rehypePlugins: [
       rehypeSlug,
       () => (tree) => {

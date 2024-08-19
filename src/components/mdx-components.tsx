@@ -9,6 +9,8 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import manifest from '@/lib/material-icon'
 import { cn } from '@/lib/utils'
+import '@/styles/mdx.css'
+import '@/styles/vessel.css'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 
@@ -19,6 +21,10 @@ const components = {
   Alert,
   AlertTitle,
   AlertDescription,
+  vessel: ({ ...props }) => {
+    // console.log(props)
+    return <div {...props} />
+  },
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(

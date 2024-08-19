@@ -10,7 +10,7 @@ export interface VesselNode {
 }
 
 const VESSEL_TYPES = [
-  'info',
+  'note',
   'tip',
   'warning',
   'danger',
@@ -30,12 +30,10 @@ const visitor: Visitor<Paragraph, Parent> = (
   parent
 ): VisitorResult => {
   if (!parent) return
-
   const { children } = node
-
-  if (children.length === 0 || children[0].type !== 'text') return
-
+  if (!children || children.length === 0) return
   const firstChild = node.children[0] as Text
+
   const firstChildValue = firstChild.value
 
   const startMatch = firstChildValue.match(VESSEL_START)
@@ -59,42 +57,45 @@ const visitor: Visitor<Paragraph, Parent> = (
     allVesselNodes.push(vesselNode)
 
     const containerNode: any = {
-      type: 'vessel',
+      type: 'element',
       data: {
-        hName: 'div',
+        hName: 'vessel',
         hProperties: {
-          className: `vessel ${vesselNode.type}`
+          className: `vessel vessel-${vesselNode.type}`
         }
       },
-      children: [
-        {
-          type: 'jsx',
-          value: `<Vessel>${vesselNode.title}</Vessel>`,
-          children: [{ type: 'text', value: vesselNode.title }]
-        },
-        ...vesselNode.children
-      ]
+      children: vesselNode.children
     }
+    if (vesselNode.title) {
+      containerNode.children.unshift({
+        type: 'paragraph',
+        data: {
+          hProperties: {
+            'data-vessel-title': ''
+          }
+        },
+        children: [{ type: 'text', value: vesselNode.title }]
+      })
+    }
+    const start = vesselNode.start
+    const end = vesselNode.end
 
     // remove original container nodes and replace with new container node
-    parent.children.splice(
-      vesselNode.start!,
-      vesselNode.end! - vesselNode.start! + 1,
-      containerNode
-    )
+    parent.children.splice(start, end - start + 1, containerNode)
     vesselNode = null
 
-    return
+    return start + 1
   }
 
   if (vesselNode) {
     vesselNode.children.push(node)
+
     return
   }
 }
 
 export function remarkVessel() {
   return (tree: any) => {
-    visit(tree, 'paragraph', visitor)
+    visit(tree, visitor)
   }
 }

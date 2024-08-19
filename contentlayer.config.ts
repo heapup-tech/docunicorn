@@ -59,6 +59,15 @@ export default makeSource({
         }
       ],
       rehypeCodeBlockTitle,
+      () => (tree) => {
+        visit(tree, (node) => {
+          // console.log(node.tagName)
+
+          if (node?.tagName === 'vessel') {
+            // console.log(node.children)
+          }
+        })
+      },
       [
         rehypeAutolinkHeadings,
         {

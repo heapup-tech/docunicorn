@@ -9,7 +9,7 @@ export interface VesselNode {
   end: number
 }
 
-const VESSEL_TYPES = [
+export const VESSEL_TYPES = [
   'note',
   'tip',
   'warning',
@@ -61,7 +61,8 @@ const visitor: Visitor<Paragraph, Parent> = (
       data: {
         hName: 'vessel',
         hProperties: {
-          className: `vessel vessel-${vesselNode.type}`
+          className: `vessel vessel-${vesselNode.type}`,
+          'data-vessel-type': vesselNode.type
         }
       },
       children: vesselNode.children

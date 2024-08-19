@@ -2,11 +2,11 @@
   @apply mt-8 rounded-md border px-4 py-2 text-sm first:mt-0;
 }
 
-.vessel-note {
+.vessel-tip {
   @apply border-emerald-300 bg-emerald-100 text-emerald-600 dark:border-emerald-500 dark:bg-emerald-500/30 dark:text-emerald-400;
 }
 
-.vessel-tip {
+.vessel-note {
   @apply border-blue-300 bg-blue-100 text-blue-600 dark:border-blue-500 dark:bg-blue-500/30 dark:text-blue-400;
 }
 

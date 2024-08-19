@@ -11,6 +11,7 @@ import manifest from '@/lib/material-icon'
 import { cn } from '@/lib/utils'
 import '@/styles/mdx.css'
 import '@/styles/vessel.css'
+import { Info, Siren, Skull, TriangleAlert } from 'lucide-react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 
@@ -21,9 +22,38 @@ const components = {
   Alert,
   AlertTitle,
   AlertDescription,
-  vessel: ({ ...props }) => {
-    // console.log(props)
-    return <div {...props} />
+  vessel: ({
+    className,
+    __vessel_type__,
+    ...props
+  }: React.PropsWithChildren<{
+    __vessel_type__: string
+    className: string
+  }>) => {
+    let icon = <Info className='w-5 h-5' />
+    if (__vessel_type__ === 'note') {
+      icon = <Info className='w-5 h-5' />
+    }
+    if (__vessel_type__ === 'tip') {
+      icon = <Siren className='w-5 h-5' />
+    }
+    if (__vessel_type__ === 'warning') {
+      icon = <TriangleAlert className='w-5 h-5' />
+    }
+    if (__vessel_type__ === 'danger') {
+      icon = <Skull className='w-5 h-5' />
+    }
+    return (
+      <div className={className}>
+        <div className='flex gap-x-2 items-center'>
+          {icon}
+          <span>
+            {Array.isArray(props.children) ? props.children[0] : props.children}
+          </span>
+        </div>
+        {Array.isArray(props.children) ? props.children.slice(1) : null}
+      </div>
+    )
   },
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1

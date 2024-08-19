@@ -64,13 +64,6 @@ export default makeSource({
           if (node?.tagName === 'vessel') {
             node.properties['__vessel_type__'] =
               node.properties['data-vessel-type']
-            // console.log(node.children)
-
-            node.children.forEach((child: any) => {
-              if ('data-vessel-title' in child.properties) {
-                console.log(child)
-              }
-            })
           }
         })
       },

@@ -34,7 +34,7 @@ const visitor: Visitor<Paragraph, Parent> = (
   if (!children || children.length === 0) return
   const firstChild = node.children[0] as Text
 
-  const firstChildValue = firstChild.value
+  const firstChildValue = firstChild.value || ''
 
   const startMatch = firstChildValue.match(VESSEL_START)
 
@@ -65,19 +65,20 @@ const visitor: Visitor<Paragraph, Parent> = (
           'data-vessel-type': vesselNode.type
         }
       },
-      children: vesselNode.children
-    }
-    if (vesselNode.title) {
-      containerNode.children.unshift({
-        type: 'paragraph',
-        data: {
-          hProperties: {
-            'data-vessel-title': ''
-          }
+      children: [
+        {
+          type: 'paragraph',
+          data: {
+            hProperties: {
+              'data-vessel-title': ''
+            }
+          },
+          children: [{ type: 'text', value: vesselNode.title || '' }]
         },
-        children: [{ type: 'text', value: vesselNode.title }]
-      })
+        ...vesselNode.children
+      ]
     }
+
     const start = vesselNode.start
     const end = vesselNode.end
 

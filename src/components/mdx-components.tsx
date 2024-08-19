@@ -51,7 +51,9 @@ const components = {
             {Array.isArray(props.children) ? props.children[0] : props.children}
           </span>
         </div>
-        {Array.isArray(props.children) ? props.children.slice(1) : null}
+        <div className='mt-2'>
+          {Array.isArray(props.children) ? props.children.slice(1) : null}
+        </div>
       </div>
     )
   },

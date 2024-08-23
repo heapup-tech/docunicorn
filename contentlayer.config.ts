@@ -5,7 +5,7 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { visit } from 'unist-util-visit'
 import { rehypeCodeBlockTitle } from './src/lib/rehype-plugin/codeblock-title'
-import { remarkVessel } from './src/lib/remark-plugin/vessel'
+import { remarkAdmonition } from './src/lib/remark-plugin/admonition'
 
 const themes = {
   light: 'light-plus',
@@ -38,7 +38,7 @@ export default makeSource({
   contentDirPath: './content',
   documentTypes: [Doc],
   mdx: {
-    remarkPlugins: [remarkGfm, remarkVessel],
+    remarkPlugins: [remarkGfm, remarkAdmonition],
     rehypePlugins: [
       rehypeSlug,
       () => (tree) => {
@@ -61,9 +61,9 @@ export default makeSource({
       rehypeCodeBlockTitle,
       () => (tree) => {
         visit(tree, (node) => {
-          if (node?.tagName === 'vessel') {
-            node.properties['__vessel_type__'] =
-              node.properties['data-vessel-type']
+          if (node?.tagName === 'admonition') {
+            node.properties['__admonition_type__'] =
+              node.properties['data-admonition-type']
           }
         })
       },

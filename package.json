@@ -54,6 +54,8 @@
     "tailwindcss": "^3.4.7",
     "typescript": "^5",
     "unist-builder": "^4.0.0",
+    "unist-util-find-after": "^5.0.0",
+    "unist-util-find-between-all": "^1.0.5",
     "unist-util-visit": "^5.0.0"
   }
 }

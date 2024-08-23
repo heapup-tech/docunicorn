@@ -9,8 +9,8 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import manifest from '@/lib/material-icon'
 import { cn } from '@/lib/utils'
+import '@/styles/admonition.css'
 import '@/styles/mdx.css'
-import '@/styles/vessel.css'
 import { Info, Siren, Skull, TriangleAlert } from 'lucide-react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
@@ -22,25 +22,25 @@ const components = {
   Alert,
   AlertTitle,
   AlertDescription,
-  vessel: ({
+  admonition: ({
     className,
-    __vessel_type__,
+    __admonition_type__,
     ...props
   }: React.PropsWithChildren<{
-    __vessel_type__: string
+    __admonition_type__: string
     className: string
   }>) => {
     let icon = <Info className='w-5 h-5' />
-    if (__vessel_type__ === 'note') {
+    if (__admonition_type__ === 'note') {
       icon = <Info className='w-5 h-5' />
     }
-    if (__vessel_type__ === 'tip') {
+    if (__admonition_type__ === 'tip') {
       icon = <Siren className='w-5 h-5' />
     }
-    if (__vessel_type__ === 'warning') {
+    if (__admonition_type__ === 'warning') {
       icon = <TriangleAlert className='w-5 h-5' />
     }
-    if (__vessel_type__ === 'danger') {
+    if (__admonition_type__ === 'danger') {
       icon = <Skull className='w-5 h-5' />
     }
     return (

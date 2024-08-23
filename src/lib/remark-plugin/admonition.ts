@@ -1,7 +1,8 @@
 import type { Paragraph, Parent, Text } from 'mdast'
+import { findAllBetween } from 'unist-util-find-between-all'
 import { visit, Visitor, VisitorResult } from 'unist-util-visit'
 
-export interface VesselNode {
+export interface AdmonitionNode {
   type: string
   title?: string
   children: Paragraph[]
@@ -9,7 +10,7 @@ export interface VesselNode {
   end: number
 }
 
-export const VESSEL_TYPES = [
+export const ADMONITION_TYPES = [
   'note',
   'tip',
   'warning',
@@ -17,12 +18,11 @@ export const VESSEL_TYPES = [
   'details',
   'code-group'
 ]
-const VESSEL_START = new RegExp(
-  `^:{3}(?:\\s*)(${VESSEL_TYPES.join('|')}) ?(.+)?`
+const ADMONITION_START = new RegExp(
+  `^:{3}(?:\\s*)(${ADMONITION_TYPES.join('|')}) ?(.+)?`
 )
-const VESSEL_END = /\s*\n*?:{3}$/
-let vesselNode: VesselNode | null = null
-let allVesselNodes: VesselNode[] = []
+const ADMONITION_END = /\s*\n*?:{3}$/
+let admonitionNode: AdmonitionNode | null = null
 
 const visitor: Visitor<Paragraph, Parent> = (
   node,
@@ -30,16 +30,17 @@ const visitor: Visitor<Paragraph, Parent> = (
   parent
 ): VisitorResult => {
   if (!parent) return
+
   const { children } = node
   if (!children || children.length === 0) return
   const firstChild = node.children[0] as Text
 
   const firstChildValue = firstChild.value || ''
 
-  const startMatch = firstChildValue.match(VESSEL_START)
+  const startMatch = firstChildValue.match(ADMONITION_START)
 
   if (startMatch) {
-    vesselNode = {
+    admonitionNode = {
       type: startMatch[1],
       title: startMatch[2] || '',
       children: [],
@@ -49,20 +50,18 @@ const visitor: Visitor<Paragraph, Parent> = (
 
     return
   }
-  const endMatch = firstChildValue.match(VESSEL_END)
+  const endMatch = firstChildValue.match(ADMONITION_END)
 
-  if (endMatch && vesselNode) {
-    vesselNode.end = index!
-
-    allVesselNodes.push(vesselNode)
+  if (endMatch && admonitionNode) {
+    admonitionNode.end = index!
 
     const containerNode: any = {
       type: 'element',
       data: {
-        hName: 'vessel',
+        hName: 'admonition',
         hProperties: {
-          className: `vessel vessel-${vesselNode.type}`,
-          'data-vessel-type': vesselNode.type
+          className: `admonition admonition-${admonitionNode.type}`,
+          'data-admonition-type': admonitionNode.type
         }
       },
       children: [
@@ -70,34 +69,38 @@ const visitor: Visitor<Paragraph, Parent> = (
           type: 'paragraph',
           data: {
             hProperties: {
-              'data-vessel-title': ''
+              'data-admonition-title': ''
             }
           },
-          children: [{ type: 'text', value: vesselNode.title || '' }]
+          children: [{ type: 'text', value: admonitionNode.title || '' }]
         },
-        ...vesselNode.children
+        ...findAllBetween(
+          parent as any,
+          admonitionNode.start,
+          admonitionNode.end
+        )
       ]
     }
 
-    const start = vesselNode.start
-    const end = vesselNode.end
+    const start = admonitionNode.start
+    const end = admonitionNode.end
 
     // remove original container nodes and replace with new container node
     parent.children.splice(start, end - start + 1, containerNode)
-    vesselNode = null
+    admonitionNode = null
 
     return start + 1
   }
 
-  if (vesselNode) {
-    vesselNode.children.push(node)
+  if (admonitionNode) {
+    admonitionNode.children.push(node)
 
     return
   }
 }
 
-export function remarkVessel() {
+export function remarkAdmonition() {
   return (tree: any) => {
-    visit(tree, visitor)
+    visit(tree, 'paragraph', visitor)
   }
 }

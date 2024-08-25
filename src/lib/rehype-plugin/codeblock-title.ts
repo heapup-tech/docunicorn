@@ -21,19 +21,23 @@ export function rehypeCodeBlockTitle() {
           codeTitleElement.properties['__rawString__'] = node.__rawString__
         }
 
-        if (!hasTitle && isTerminalLanguage(language)) {
-          node.children.unshift({
-            type: 'element',
-            tagName: 'figcaption',
-            properties: {
-              'data-rehype-pretty-code-title': '',
-              __language__: language,
-              __rawString__: node.__rawString__
-            },
-            children: [{ type: 'text', value: 'Terminal' }]
-          })
-
-          preElement.properties['__withTitle__'] = true
+        if (isTerminalLanguage(language)) {
+          if (!hasTitle) {
+            node.children.unshift({
+              type: 'element',
+              tagName: 'figcaption',
+              properties: {
+                'data-rehype-pretty-code-title': '',
+                __language__: language,
+                __rawString__: node.__rawString__
+              },
+              children: [{ type: 'text', value: 'Terminal' }]
+            })
+            preElement.properties['__withTitle__'] = true
+          } else {
+            const codeTitleElement = node.children.at(0)
+            codeTitleElement.properties['__language__'] = language
+          }
         }
       }
     })

@@ -64,6 +64,13 @@ export default makeSource({
           if (node?.tagName === 'admonition') {
             node.properties['__admonition_type__'] =
               node.properties['data-admonition-type']
+
+            const { children } = node
+            const title = children[0].children[0].value
+
+            if (title) {
+              node.properties['__admonition_title__'] = title
+            }
           }
         })
       },

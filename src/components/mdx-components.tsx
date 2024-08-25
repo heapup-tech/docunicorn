@@ -25,9 +25,11 @@ const components = {
   admonition: ({
     className,
     __admonition_type__,
+    __admonition_title__,
     ...props
   }: React.PropsWithChildren<{
     __admonition_type__: string
+    __admonition_title__?: string
     className: string
   }>) => {
     let icon = <Info className='w-5 h-5' />
@@ -43,15 +45,21 @@ const components = {
     if (__admonition_type__ === 'danger') {
       icon = <Skull className='w-5 h-5' />
     }
+
     return (
       <div className={className}>
-        <div className='flex gap-x-2 items-center'>
-          {icon}
-          <span>
-            {Array.isArray(props.children) ? props.children[0] : props.children}
-          </span>
-        </div>
-        <div className='mt-2'>
+        {__admonition_title__ && (
+          <div className='flex gap-x-2 items-center'>
+            {icon}
+            <span>
+              {Array.isArray(props.children)
+                ? props.children[0]
+                : props.children}
+            </span>
+          </div>
+        )}
+
+        <div className={cn(__admonition_title__ ? 'mt-2' : '')}>
           {Array.isArray(props.children) ? props.children.slice(1) : null}
         </div>
       </div>
@@ -237,6 +245,30 @@ const components = {
       alt={alt}
       {...props}
     />
+  ),
+  ImageCaption: ({
+    className,
+    src,
+    caption,
+    alt = '',
+    ...props
+  }: React.ImgHTMLAttributes<HTMLImageElement> & {
+    caption?: string
+    alt?: string
+  }) => (
+    <div className='border rounded-lg mt-4'>
+      <img
+        className={cn('p-2 dark:invert', className)}
+        src={src}
+        alt={alt}
+      />
+
+      <div className='p-2 bg-muted'>
+        {caption && <div>{caption}</div>}
+
+        {props.children}
+      </div>
+    </div>
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
     <hr

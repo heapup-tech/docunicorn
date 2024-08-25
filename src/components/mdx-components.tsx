@@ -263,11 +263,13 @@ const components = {
         alt={alt}
       />
 
-      <div className='p-2 bg-muted'>
-        {caption && <div>{caption}</div>}
+      {caption && (
+        <div className='p-2 bg-muted'>
+          <div>{caption}</div>
 
-        {props.children}
-      </div>
+          {props.children}
+        </div>
+      )}
     </div>
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (

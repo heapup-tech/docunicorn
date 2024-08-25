@@ -11,7 +11,7 @@
 }
 
 .admonition-warning {
-  @apply border-yellow-300 bg-yellow-100 text-orange-600 dark:border-yellow-500 dark:bg-yellow-500/30 dark:text-yellow-400;
+  @apply border-yellow-300 bg-yellow-100 text-yellow-600 dark:border-yellow-500 dark:bg-yellow-500/30 dark:text-yellow-400;
 }
 
 .admonition-danger {

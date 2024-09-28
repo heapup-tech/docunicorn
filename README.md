@@ -1,6 +1,6 @@
 ## Docunicorn
 
-Docunicorn is a docs template powered by [Contentlayer](https://contentlayer.dev) and [Next.js](https://nextjs.org/)
+Docunicorn is a docs template powered by [Content Collections](https://www.content-collections.dev/) and [Next.js](https://nextjs.org/)
 
 ## Config Theme
 
@@ -9,7 +9,7 @@ Themes for shadcn/ui](https://ui.jln.dev/) to `styles/gobals.css`
 
 ## Code Theme
 
-Configure the code theme using `rehype-pretty-code` in `contentlayer.config.ts`.
+Configure the code theme using `rehype-pretty-code` in `content-collections.ts`.
 
 [rehype-pretty-code](https://rehype-pretty.pages.dev) is a rehype plugin powered by the [shiki](https://shiki.style) syntax highlighter that provides beautiful code blocks for Markdown or MDX
 

@@ -5,7 +5,7 @@ import { getTableOfContents } from '@/lib/toc'
 import { cn } from '@/lib/utils'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
-import { allDocs } from 'contentlayer/generated'
+import { allDocs } from 'content-collections'
 import { notFound } from 'next/navigation'
 import Balancer from 'react-wrap-balancer'
 

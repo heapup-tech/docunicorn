@@ -11,8 +11,8 @@ import manifest from '@/lib/material-icon'
 import { cn } from '@/lib/utils'
 import '@/styles/admonition.css'
 import '@/styles/mdx.css'
+import { useMDXComponent } from '@content-collections/mdx/react'
 import { Info, Siren, Skull, TriangleAlert } from 'lucide-react'
-import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 
 const components = {

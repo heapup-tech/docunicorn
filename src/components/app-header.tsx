@@ -12,7 +12,7 @@ const ModeToggle = dynamic(() => import('./mode-toggle'), { ssr: false })
 
 export default function AppHeader() {
   return (
-    <header className='sticky top-0 z-50 w-full border-b border-border/40 bg-background/70 backdrop-blur'>
+    <header className='sticky top-0 z-50 w-full border-b border-border/40 bg-background/70 backdrop-blur-sm'>
       <div className='container flex h-16 items-center flex-between'>
         <MainNav />
         <MobileNav />
